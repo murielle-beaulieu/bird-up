@@ -9,4 +9,15 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  resources :spottings, only: [:index, :show, :create, :edit, :update, :destroy]
+
+  resources :rankings, only: [:index]
+
+  get "/search/new", to: "search#new", as: :new_search
+
+  get "/search/results", to: "search#results", as: :results_search
+
+  resources :birds, only: [:show], as: :show_bird
+
 end
