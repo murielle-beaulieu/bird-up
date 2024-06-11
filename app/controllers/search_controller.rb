@@ -18,7 +18,7 @@ class SearchController < ApplicationController
       { "type": "text", "text": "Return only a string of 5 scientific names separated by commas that are possible matches to the bird in the image"},
       { "type": "image_url",
         "image_url": {
-          "url": "https://www.daysoftheyear.com/wp-content/uploads/bird-day-1.jpg",
+          "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKjxlkh-tjSMAjFBf7xNuXOdctlrG4u6kg9A&s",
         },
       }
     ]
@@ -27,7 +27,7 @@ class SearchController < ApplicationController
           model: "gpt-4o", # Required.
           # response_format: { type: "string" },
           messages: [{ role: "user", content: messages}], # Required.
-          temperature: 0.7,
+          temperature: 0.7
       })
     # Receive JSON object and parse this response
     @ai_results = response.dig("choices", 0, "message", "content").split(',')
