@@ -1,5 +1,6 @@
 require "openai"
 require "json"
+require 'wikipedia'
 
 class SearchController < ApplicationController
 
@@ -31,9 +32,7 @@ class SearchController < ApplicationController
       })
     # Receive JSON object and parse this response
     @ai_results = response.dig("choices", 0, "message", "content").split(',')
-
-
-
+    @page = Wikipedia.find(@ai_results[0])
 
 
     # Determine whether we have in database.
