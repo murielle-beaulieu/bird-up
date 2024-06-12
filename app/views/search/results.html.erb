@@ -2,5 +2,8 @@
 <p><%= @hash %></p>
 
 <% @birds_to_display.each do |bird| %>
-<p><%= bird.scientific_name %></p>
+  <div style="margin-bottom: 10px;">
+    <img src="<%= bird.img_url %>" style="width: 100px; height: 100px;">
+    <p><%= bird.scientific_name %></p>
+  </div>
 <% end %>
