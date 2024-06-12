@@ -1,5 +1,6 @@
 <h2>Results</h2>
 <p><%= @hash %></p>
-<% @hash.each do |result| %>
-<p><%= result %></p>
+
+<% @birds_to_display.each do |bird| %>
+<p><%= bird.scientific_name %></p>
 <% end %>

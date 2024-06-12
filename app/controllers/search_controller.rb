@@ -17,7 +17,7 @@ class SearchController < ApplicationController
     )
 
     messages = [
-      { "type": "text", "text": "Return the bird in the image as JSON with its species, scientific_name, habitat, distribution, description. Give me 5 suggestions."},
+      { "type": "text", "text": "Return the bird in the image as JSON with its species, scientific_name, habitat, distribution, description. Give me an array called 'birds' of 5 different JSON objects" },
       { "type": "image_url",
         "image_url": {
           "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJ9SdSxAl3YkpSGgpoxipta6QlG7z63Ajs6w&s",
@@ -37,21 +37,24 @@ class SearchController < ApplicationController
     @ai_results = @response.dig("choices", 0, "message", "content")
     @hash = JSON.load(@ai_results)
 
+    @birds_to_display = []
 
-    # @hash["suggestions"].each do |suggestion|
-    #   if Bird.find_by(scientific_name: suggestion["scientific_name"])
-    #     @bird = Bird.find_by(scientific_name: suggestion["scientific_name"])
-    #   else
-    #     @bird = Bird.new(
-    #       species: suggestion["species"],
-    #       scientific_name: suggestion["scientific_name"],
-    #       habitat: suggestion["habitat"],
-    #       description: suggestion["description"],
-    #       distribution: suggestion["distribution"]
-    #     )
-    #     @bird.save!
-    #   end
-    # end
+    @hash["birds"].each do |suggestion|
+      if Bird.find_by(scientific_name: suggestion["scientific_name"])
+        @bird = Bird.find_by(scientific_name: suggestion["scientific_name"])
+        @birds_to_display << @bird
+      else
+        @bird = Bird.new(
+          species: suggestion["species"],
+          scientific_name: suggestion["scientific_name"],
+          habitat: suggestion["habitat"],
+          description: suggestion["description"],
+          distribution: suggestion["distribution"]
+        )
+        @bird.save!
+        @birds_to_display << @bird
+      end
+    end
 
     # raise
     # Determine whether we have in database.

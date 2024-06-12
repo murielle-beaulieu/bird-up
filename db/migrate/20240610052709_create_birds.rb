@@ -7,6 +7,7 @@ class CreateBirds < ActiveRecord::Migration[7.1]
       t.string :habitat
       t.string :distribution
       t.string :img_url
+      t.string :audio_url
 
       t.timestamps
     end
