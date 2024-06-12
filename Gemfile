@@ -77,4 +77,5 @@ group :test do
 end
 
 gem "ruby-openai"
-gem 'wikipedia-client'
+
+gem "wikipedia-client"
