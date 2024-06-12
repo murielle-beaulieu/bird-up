@@ -79,3 +79,5 @@ end
 gem "ruby-openai"
 
 gem "wikipedia-client"
+
+gem "cloudinary"
