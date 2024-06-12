@@ -12,21 +12,20 @@ class SearchController < ApplicationController
 
 
   def results
-    @photo = Photo.last
-    url = @photo.img.url
+    # @photo = Photo.last
+    # url = @photo.img.url
 
     # Use OpenAI API for identification of bird
     client = OpenAI::Client.new(
       access_token: ENV['OPENAI_API_KEY'],
-      log_errors: true # Highly recommended in development, so you can see what errors OpenAI is returning. Not recommended in production because it could leak private data to your logs.
+      log_errors: true
     )
 
     messages = [
       { "type": "text", "text": "Return the bird in the image as JSON with its species, scientific_name, habitat, distribution, description. Give me an array called 'birds' of 5 different JSON objects related to the bird in the image" },
       { "type": "image_url",
         "image_url": {
-          "url": url,
-
+          "url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Laughing_kookaburra_dec08_02.jpg",
         },
       }
     ]
@@ -56,12 +55,15 @@ class SearchController < ApplicationController
           habitat: suggestion["habitat"],
           description: suggestion["description"],
           distribution: suggestion["distribution"],
-          audio_url: get_audio(suggestion["scientific_name"]),
+          audio_url: "audio.mp3",# get_audio(suggestion["scientific_name"]),
           img_url: get_image(suggestion["scientific_name"])
         )
         @bird.save!
         @birds_to_display << @bird
       end
+
+      @main_bird = @birds_to_display[0]
+      @other_birds = @birds_to_display[1..-1]
     end
 
     # Determine whether we have in database.
@@ -89,7 +91,13 @@ class SearchController < ApplicationController
     wiki_serialized = URI.open(wiki_url).read
     wiki_data = JSON.parse(wiki_serialized)
     page_id = wiki_data["query"]["pages"].keys[0]
-    image_url = wiki_data["query"]["pages"][page_id]["thumbnail"]["source"]
+
+    if page_id == -1
+      image_url = "/app/assets/images/fletchlingPokemon.webp"
+    else
+      image_url = wiki_data["query"]["pages"][page_id]["thumbnail"]["source"]
+    end
+
     return image_url
   end
 
