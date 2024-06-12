@@ -12,8 +12,8 @@ class SearchController < ApplicationController
 
 
   def results
-    # @photo = Photo.last
-    # url = @photo.img.url
+    @photo = Photo.last
+    ai_url = @photo.img.url
 
     # Use OpenAI API for identification of bird
     client = OpenAI::Client.new(
@@ -25,7 +25,7 @@ class SearchController < ApplicationController
       { "type": "text", "text": "Return the bird in the image as JSON with its species, scientific_name, habitat, distribution, description. Give me an array called 'birds' of 5 different JSON objects related to the bird in the image" },
       { "type": "image_url",
         "image_url": {
-          "url": url,
+          "url": ai_url,
         },
       }
     ]
@@ -88,12 +88,12 @@ class SearchController < ApplicationController
 
   def get_audio_object(name)
     query = name.split
-    url = "https://xeno-canto.org/api/2/recordings?query="
+    xeno_url = "https://xeno-canto.org/api/2/recordings?query="
     query.each do |item|
-      url += "#{item}+"
+      xeno_url += "#{item}+"
     end
-    url += "q:A"
-    query_result = URI.open(url).read
+    xeno_url += "q:A"
+    query_result = URI.open(xeno_url).read
     xeno_response = JSON.parse(query_result)
     return xeno_response
   end
