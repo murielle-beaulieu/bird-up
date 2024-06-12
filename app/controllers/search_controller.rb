@@ -25,7 +25,7 @@ class SearchController < ApplicationController
       { "type": "text", "text": "Return the bird in the image as JSON with its species, scientific_name, habitat, distribution, description. Give me an array called 'birds' of 5 different JSON objects related to the bird in the image" },
       { "type": "image_url",
         "image_url": {
-          "url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Laughing_kookaburra_dec08_02.jpg",
+          "url": url,
         },
       }
     ]
@@ -55,7 +55,7 @@ class SearchController < ApplicationController
           habitat: suggestion["habitat"],
           description: suggestion["description"],
           distribution: suggestion["distribution"],
-          audio_url: "audio.mp3",# get_audio(suggestion["scientific_name"]),
+          audio_url: get_audio(suggestion["scientific_name"], suggestion["species"]),
           img_url: get_image(suggestion["scientific_name"])
         )
         @bird.save!
@@ -73,17 +73,29 @@ class SearchController < ApplicationController
 
   private
 
-  def new_params
-    params.require(:new).permit(:photo)
+  def get_audio(sci_name, species)
+    sci_response = get_audio_object(sci_name)
+    spec_response = get_audio_object(species)
+    if sci_response["numRecordings"] != "0"
+      audio = sci_response["recordings"][0]["id"]
+    elsif spec_response["numRecordings"] != "0"
+      audio = spec_response["recordings"][0]["id"]
+    else
+      audio = ""
+    end
+    return audio
   end
 
-  def get_audio(sci_name)
-    query = sci_name.split
-    url = "https://xeno-canto.org/api/2/recordings?query=#{query[0]}+#{query[1]}+q:A"
+  def get_audio_object(name)
+    query = name.split
+    url = "https://xeno-canto.org/api/2/recordings?query="
+    query.each do |item|
+      url += "#{item}+"
+    end
+    url += "q:A"
     query_result = URI.open(url).read
     xeno_response = JSON.parse(query_result)
-    audio = xeno_response["recordings"][0]["id"]
-    return audio
+    return xeno_response
   end
 
   def get_image(sci_name)
@@ -99,6 +111,10 @@ class SearchController < ApplicationController
     end
 
     return image_url
+  end
+  
+  def new_params
+    params.require(:new).permit(:photo)
   end
 
 end
