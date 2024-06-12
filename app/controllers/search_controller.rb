@@ -98,6 +98,21 @@ class SearchController < ApplicationController
     return xeno_response
   end
 
+
+  # def get_audio_id(url)
+  #   query_result = URI.open(url).read
+  #   xeno_response = JSON.parse(query_result)
+
+  #   if xeno_response && xeno_response["recordings"] && xeno_response["recordings"].any?
+  #     audio = xeno_response["recordings"][0]["id"]
+  #     return audio
+  #   else
+  #     # Handle the case where the response doesn't contain the expected data
+  #     # You can raise an error, return nil, or handle it in some other way
+  #     raise "No recordings found in the response"
+  # end
+
+
   def get_image(sci_name)
     wiki_url = "https://en.wikipedia.org/w/api.php?action=query&prop=pageimages%7Cpageprops&format=json&piprop=thumbnail&titles=#{sci_name}&pithumbsize=300&redirects"
     wiki_serialized = URI.open(wiki_url).read
