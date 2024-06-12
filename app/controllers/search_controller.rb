@@ -1,6 +1,7 @@
 require "openai"
 require 'wikipedia'
 require 'json'
+require 'open-uri'
 
 class SearchController < ApplicationController
 
@@ -21,10 +22,11 @@ class SearchController < ApplicationController
     )
 
     messages = [
-      { "type": "text", "text": "Return the bird in the image as JSON with its species, scientific_name, habitat, distribution, description. Give me an array called 'birds' of 5 different JSON objects" },
+      { "type": "text", "text": "Return the bird in the image as JSON with its species, scientific_name, habitat, distribution, description. Give me an array called 'birds' of 5 different JSON objects related to the bird in the image" },
       { "type": "image_url",
         "image_url": {
           "url": url,
+
         },
       }
     ]
@@ -53,7 +55,9 @@ class SearchController < ApplicationController
           scientific_name: suggestion["scientific_name"],
           habitat: suggestion["habitat"],
           description: suggestion["description"],
-          distribution: suggestion["distribution"]
+          distribution: suggestion["distribution"],
+          audio_url: get_audio(suggestion["scientific_name"]),
+          img_url: get_image(suggestion["scientific_name"])
         )
         @bird.save!
         @birds_to_display << @bird
@@ -61,7 +65,7 @@ class SearchController < ApplicationController
     end
 
     # Determine whether we have in database.
-    # If we have in database, return the bird
+    # If zwe have in database, return the bird
     # Else create new bird records
   end
 
@@ -70,4 +74,23 @@ class SearchController < ApplicationController
   def new_params
     params.require(:new).permit(:photo)
   end
+
+  def get_audio(sci_name)
+    query = sci_name.split
+    url = "https://xeno-canto.org/api/2/recordings?query=#{query[0]}+#{query[1]}+q:A"
+    query_result = URI.open(url).read
+    xeno_response = JSON.parse(query_result)
+    audio = xeno_response["recordings"][0]["id"]
+    return audio
+  end
+
+  def get_image(sci_name)
+    wiki_url = "https://en.wikipedia.org/w/api.php?action=query&prop=pageimages%7Cpageprops&format=json&piprop=thumbnail&titles=#{sci_name}&pithumbsize=300&redirects"
+    wiki_serialized = URI.open(wiki_url).read
+    wiki_data = JSON.parse(wiki_serialized)
+    page_id = wiki_data["query"]["pages"].keys[0]
+    image_url = wiki_data["query"]["pages"][page_id]["thumbnail"]["source"]
+    return image_url
+  end
+
 end
