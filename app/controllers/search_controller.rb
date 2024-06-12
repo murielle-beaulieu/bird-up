@@ -45,20 +45,14 @@ class SearchController < ApplicationController
         @bird = Bird.find_by(scientific_name: suggestion["scientific_name"])
         @birds_to_display << @bird
       else
-        query = suggestion["scientific_name"]
-        wiki_url = "https://en.wikipedia.org/w/api.php?action=query&prop=pageimages%7Cpageprops&format=json&piprop=thumbnail&titles=#{query}&pithumbsize=300&redirects"
-        wiki_serialized = URI.open(wiki_url).read
-        wiki_data = JSON.parse(wiki_serialized)
-        page_id = wiki_data["query"]["pages"].keys[0]
-        image_url = wiki_data["query"]["pages"][page_id]["thumbnail"]["source"]
-
         @bird = Bird.new(
           species: suggestion["species"],
           scientific_name: suggestion["scientific_name"],
           habitat: suggestion["habitat"],
           description: suggestion["description"],
           distribution: suggestion["distribution"],
-          img_url: image_url
+          audio_url: get_audio(suggestion["scientific_name"]),
+          img_url: get_image(suggestion["scientific_name"])
         )
         @bird.save!
         @birds_to_display << @bird
@@ -67,7 +61,28 @@ class SearchController < ApplicationController
 
     # raise
     # Determine whether we have in database.
-    # If we have in database, return the bird
+    # If zwe have in database, return the bird
     # Else create new bird records
   end
+
+  private
+
+  def get_audio(sci_name)
+    query = sci_name.split
+    url = "https://xeno-canto.org/api/2/recordings?query=#{query[0]}+#{query[1]}+q:A"
+    query_result = URI.open(url).read
+    xeno_response = JSON.parse(query_result)
+    audio = xeno_response["recordings"][0]["id"]
+    return audio
+  end
+
+  def get_image(sci_name)
+    wiki_url = "https://en.wikipedia.org/w/api.php?action=query&prop=pageimages%7Cpageprops&format=json&piprop=thumbnail&titles=#{sci_name}&pithumbsize=300&redirects"
+    wiki_serialized = URI.open(wiki_url).read
+    wiki_data = JSON.parse(wiki_serialized)
+    page_id = wiki_data["query"]["pages"].keys[0]
+    image_url = wiki_data["query"]["pages"][page_id]["thumbnail"]["source"]
+    return image_url
+  end
+
 end
