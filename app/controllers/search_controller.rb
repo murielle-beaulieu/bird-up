@@ -79,17 +79,8 @@ class SearchController < ApplicationController
     url = "https://xeno-canto.org/api/2/recordings?query=#{query[0]}+#{query[1]}+q:A"
     query_result = URI.open(url).read
     xeno_response = JSON.parse(query_result)
-    # audio = xeno_response["recordings"][0]["id"]
-    # return audio
-
-    if xeno_response && xeno_response["recordings"] && xeno_response["recordings"].any?
-      audio = xeno_response["recordings"][0]["id"]
-      return audio
-    else
-      # Handle the case where the response doesn't contain the expected data
-      # You can raise an error, return nil, or handle it in some other way
-      "No recordings found in the response"
-    end
+    audio = xeno_response["recordings"][0]["id"]
+    return audio
   end
 
 
