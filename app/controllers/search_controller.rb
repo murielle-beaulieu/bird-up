@@ -2,6 +2,10 @@ require "openai"
 require 'wikipedia'
 require 'json'
 require 'open-uri'
+<<<<<<< HEAD
+
+=======
+>>>>>>> master
 
 class SearchController < ApplicationController
 
@@ -58,6 +62,7 @@ class SearchController < ApplicationController
           habitat: suggestion["habitat"],
           description: suggestion["description"],
           distribution: suggestion["distribution"],
+          audio_url: get_audio(suggestion["scientific_name"])
           img_url: image_url
         )
         @bird.save!
@@ -70,4 +75,16 @@ class SearchController < ApplicationController
     # If we have in database, return the bird
     # Else create new bird records
   end
+
+  private
+
+  def get_audio(sci_name)
+
+    url = "https://xeno-canto.org/api/2/recordings?query=#{sci_name}+q:A"
+    query_result = URI.open(url).read
+    xeno_response = JSON.parse(query_result)
+    audio = xeno_response["recordings"][0]["id"]
+    return audio
+  end
+
 end
