@@ -2,7 +2,10 @@ require "openai"
 require 'wikipedia'
 require 'json'
 require 'open-uri'
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 
 class SearchController < ApplicationController
 
@@ -19,10 +22,10 @@ class SearchController < ApplicationController
     )
 
     messages = [
-      { "type": "text", "text": "Return the bird in the image as JSON with its species, scientific_name, habitat, distribution, description. Give me an array called 'birds' of 5 different JSON objects" },
+      { "type": "text", "text": "Return the bird in the image as JSON with its species, scientific_name, habitat, distribution, description. Give me an array called 'birds' of 5 different JSON objects related to the bird in the image" },
       { "type": "image_url",
         "image_url": {
-          "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJ9SdSxAl3YkpSGgpoxipta6QlG7z63Ajs6w&s",
+          "url": "https://i.guim.co.uk/img/media/0586d3e9822e31dfcf3c547ee6c4c0743cfdc771/0_132_3983_2391/master/3983.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=c4b780e1dd4432c73b28e38eef1ea9ad",
         },
       }
     ]
@@ -46,6 +49,13 @@ class SearchController < ApplicationController
         @bird = Bird.find_by(scientific_name: suggestion["scientific_name"])
         @birds_to_display << @bird
       else
+        query = suggestion["scientific_name"]
+        wiki_url = "https://en.wikipedia.org/w/api.php?action=query&prop=pageimages%7Cpageprops&format=json&piprop=thumbnail&titles=#{query}&pithumbsize=300&redirects"
+        wiki_serialized = URI.open(wiki_url).read
+        wiki_data = JSON.parse(wiki_serialized)
+        page_id = wiki_data["query"]["pages"].keys[0]
+        image_url = wiki_data["query"]["pages"][page_id]["thumbnail"]["source"]
+
         @bird = Bird.new(
           species: suggestion["species"],
           scientific_name: suggestion["scientific_name"],
@@ -53,6 +63,7 @@ class SearchController < ApplicationController
           description: suggestion["description"],
           distribution: suggestion["distribution"],
           audio_url: get_audio(suggestion["scientific_name"])
+          img_url: image_url
         )
         @bird.save!
         @birds_to_display << @bird
