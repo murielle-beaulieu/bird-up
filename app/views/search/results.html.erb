@@ -1,9 +1,13 @@
 <h2>Results</h2>
-<p><%= @hash %></p>
 
 <% @birds_to_display.each do |bird| %>
-  <div style="margin-bottom: 10px;">
-    <img src="<%= bird.img_url %>" style="width: 100px; height: 100px;">
-    <p><%= bird.scientific_name %></p>
+  <div class="card">
+    <img src="<%= bird.img_url %>">
+    <div class="card-content">
+      <h4><strong><%= bird.scientific_name %></strong></h4>
+      <h5><%= bird.habitat %></h5>
+      <h5><%= bird.distribution %></h5>
+      <%= link_to "Learn More", '#', class: "btn btn-outline-primary rounded" %>
+    </div>
   </div>
 <% end %>
