@@ -1,6 +1,6 @@
 <h1>Photo img</h1>
 
-<%= simple_form_for @photo do |f| %>
+<%= simple_form_for @photo, url: photos_path, method: :post do |f| %>
   <%= f.input :img, as: :file %>
   <%= f.button :submit%>
 <% end %>
