@@ -17,8 +17,12 @@ Rails.application.routes.draw do
 
   get "/search/new", to: "search#new", as: :new_search
 
+  post "search/img_to_cloudinary", to: "search#img_to_cloudinary", as: :img_to_cloudinary_search
+
   get "/search/results", to: "search#results", as: :results_search
 
   resources :birds, only: [:show], as: :show_bird
+
+  resources :photos, only: [:new, :create]
 
 end
