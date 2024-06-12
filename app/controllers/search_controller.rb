@@ -103,7 +103,7 @@ class SearchController < ApplicationController
     image_url = wiki_data["query"]["pages"][page_id]["thumbnail"]["source"]
     return image_url
   end
-  
+
   def new_params
     params.require(:new).permit(:photo)
   end
