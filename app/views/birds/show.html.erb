@@ -1,0 +1,12 @@
+<h1>Bird Show!</h1>
+<div style="margin-bottom: 10px;">
+  <img src="<%= @bird.img_url %>" style="width: 200px;">
+</div>
+<div>
+  `<iframe src="https://xeno-canto.org/<%=@bird.audio_url%>/embed?simple=1" scrolling='no' frameborder='0' width='340' height='115'></iframe>
+</div>
+<p><%= @bird.scientific_name %></p>
+<p><%= @bird.species %></p>
+<p><%= @bird.description %></p>
+<p><%= @bird.habitat %></p>
+<p><%= @bird.distribution %></p>

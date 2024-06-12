@@ -21,7 +21,7 @@ class SearchController < ApplicationController
       { "type": "text", "text": "Return the bird in the image as JSON with its species, scientific_name, habitat, distribution, description. Give me an array called 'birds' of 5 different JSON objects related to the bird in the image" },
       { "type": "image_url",
         "image_url": {
-          "url": "https://i.guim.co.uk/img/media/0586d3e9822e31dfcf3c547ee6c4c0743cfdc771/0_132_3983_2391/master/3983.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=c4b780e1dd4432c73b28e38eef1ea9ad",
+          "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKXtZGbdvLmGJK3DL-pXmTfFCESbyYp5V2jw&s",
         },
       }
     ]
@@ -51,7 +51,7 @@ class SearchController < ApplicationController
           habitat: suggestion["habitat"],
           description: suggestion["description"],
           distribution: suggestion["distribution"],
-          audio_url: get_audio(suggestion["scientific_name"]),
+          audio_url: get_audio(suggestion["scientific_name"], suggestion["species"]),
           img_url: get_image(suggestion["scientific_name"])
         )
         @bird.save!
@@ -67,13 +67,29 @@ class SearchController < ApplicationController
 
   private
 
-  def get_audio(sci_name)
-    query = sci_name.split
-    url = "https://xeno-canto.org/api/2/recordings?query=#{query[0]}+#{query[1]}+q:A"
+  def get_audio(sci_name, species)
+    sci_response = get_audio_object(sci_name)
+    spec_response = get_audio_object(species)
+    if sci_response["numRecordings"] != "0"
+      audio = sci_response["recordings"][0]["id"]
+    elsif spec_response["numRecordings"] != "0"
+      audio = spec_response["recordings"][0]["id"]
+    else
+      audio = ""
+    end
+    return audio
+  end
+
+  def get_audio_object(name)
+    query = name.split
+    url = "https://xeno-canto.org/api/2/recordings?query="
+    query.each do |item|
+      url += "#{item}+"
+    end
+    url += "q:A"
     query_result = URI.open(url).read
     xeno_response = JSON.parse(query_result)
-    audio = xeno_response["recordings"][0]["id"]
-    return audio
+    return xeno_response
   end
 
   def get_image(sci_name)
@@ -84,5 +100,6 @@ class SearchController < ApplicationController
     image_url = wiki_data["query"]["pages"][page_id]["thumbnail"]["source"]
     return image_url
   end
+
 
 end
