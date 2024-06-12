@@ -17,10 +17,10 @@ class SearchController < ApplicationController
     )
 
     messages = [
-      { "type": "text", "text": "Return only an array of 5 JSON objects that are possible matches to the bird in the image. Each object has the following keys: species, scientific_name, habitat, distribution, description."},
+      { "type": "text", "text": "Return the bird in the image as JSON with its species, scientific_name, habitat, distribution, description. Give me 5 suggestions."},
       { "type": "image_url",
         "image_url": {
-          "url": "https://www.daysoftheyear.com/wp-content/uploads/bird-day-1.jpg",
+          "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJ9SdSxAl3YkpSGgpoxipta6QlG7z63Ajs6w&s",
         },
       }
     ]
@@ -37,18 +37,21 @@ class SearchController < ApplicationController
     @ai_results = @response.dig("choices", 0, "message", "content")
     @hash = JSON.load(@ai_results)
 
-    if Bird.find_by(scientific_name: @hash["scientific_name"])
-      @bird = Bird.find_by(scientific_name: @hash["scientific_name"])
-    else
-      @bird = Bird.new(
-        species: @hash["species"],
-        scientific_name: @hash["scientific_name"],
-        habitat: @hash["habitat"],
-        description: @hash["description"],
-        distribution: @hash["distribution"]
-      )
-      @bird.save!
+    @hash["suggestions"].each do |suggestion|
+      if Bird.find_by(scientific_name: suggestion["scientific_name"])
+        @bird = Bird.find_by(scientific_name: suggestion["scientific_name"])
+      else
+        @bird = Bird.new(
+          species: suggestion["species"],
+          scientific_name: suggestion["scientific_name"],
+          habitat: suggestion["habitat"],
+          description: suggestion["description"],
+          distribution: suggestion["distribution"]
+        )
+        @bird.save!
+      end
     end
+
     raise
     # Determine whether we have in database.
     # If we have in database, return the bird
