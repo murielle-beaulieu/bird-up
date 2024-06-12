@@ -1,6 +1,10 @@
-<h1>Photo img</h1>
+<div class="container d-flex justify-content-center">
+  <div style="margin: 30px">
+    <h1>Look up your bird</h1>
 
-<%= simple_form_for @photo do |f| %>
-  <%= f.input :img, as: :file %>
-  <%= f.button :submit%>
-<% end %>
+    <%= simple_form_for @photo do |f| %>
+      <%= f.input :img, as: :file %>
+      <%= f.button :submit%>
+    <% end %>
+  </div>
+</div>
