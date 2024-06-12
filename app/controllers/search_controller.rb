@@ -7,10 +7,14 @@ class SearchController < ApplicationController
 
   def new
     # Nothing being passed in
-    # Use new view for image upload or keyword search
+    # Use new view for image upload
   end
 
+
   def results
+    @photo = Photo.last
+    url = @photo.img.url
+
     # Use OpenAI API for identification of bird
     client = OpenAI::Client.new(
       access_token: ENV['OPENAI_API_KEY'],
@@ -21,7 +25,8 @@ class SearchController < ApplicationController
       { "type": "text", "text": "Return the bird in the image as JSON with its species, scientific_name, habitat, distribution, description. Give me an array called 'birds' of 5 different JSON objects related to the bird in the image" },
       { "type": "image_url",
         "image_url": {
-          "url": "https://i.guim.co.uk/img/media/0586d3e9822e31dfcf3c547ee6c4c0743cfdc771/0_132_3983_2391/master/3983.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=c4b780e1dd4432c73b28e38eef1ea9ad",
+          "url": url,
+
         },
       }
     ]
@@ -59,13 +64,16 @@ class SearchController < ApplicationController
       end
     end
 
-    # raise
     # Determine whether we have in database.
     # If zwe have in database, return the bird
     # Else create new bird records
   end
 
   private
+
+  def new_params
+    params.require(:new).permit(:photo)
+  end
 
   def get_audio(sci_name)
     query = sci_name.split
