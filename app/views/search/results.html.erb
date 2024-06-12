@@ -1,11 +1,29 @@
-<h2>Results</h2>
-<p><%= @hash %></p>
+<h2 style="margin-top: 30px;">We think you saw a <%= @main_bird.scientific_name %>!</h2>
 
-<% @birds_to_display.each do |bird| %>
-<p><%= bird.scientific_name %></p>
-<p><%= bird.audio_url %></p>
-  <div style="margin-bottom: 10px;">
-    <img src="<%= bird.img_url %>" style="width: 100px; height: 100px;">
-    <p><%= bird.scientific_name %></p>
+<div class="card-container">
+  <div class="card main-card">
+    <img src="<%= @main_bird.img_url %>">
+    <div class="card-content">
+      <h4><strong><%= @main_bird.scientific_name %></strong></h4>
+      <h5><%= @main_bird.distribution %></h5>
+      <h6><%= @main_bird.habitat %></h6>
+      <%= link_to "Learn More", '#', class: "btn btn-outline-primary rounded" %>
+    </div>
   </div>
-<% end %>
+</div>
+
+<h3 style="margin-top: 10px;">See other possible options</h3>
+
+<div class="card-container">
+  <% @other_birds.each do |bird| %>
+    <div class="card">
+      <img src="<%= bird.img_url %>">
+      <div class="card-content">
+        <h4><strong><%= bird.scientific_name %></strong></h4>
+        <h5><%= bird.distribution %></h5>
+        <h6><%= bird.habitat %></h6>
+        <%= link_to "Learn More", '#', class: "btn btn-outline-primary rounded" %>
+      </div>
+    </div>
+  <% end %>
+</div>
