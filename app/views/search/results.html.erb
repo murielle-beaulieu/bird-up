@@ -8,4 +8,5 @@
     <img src="<%= bird.img_url %>" style="width: 100px; height: 100px;">
     <p><%= bird.scientific_name %></p>
   </div>
+ <%= link_to "Learn More", show_bird_path(bird) %> 
 <% end %>
