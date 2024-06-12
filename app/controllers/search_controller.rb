@@ -67,7 +67,7 @@ class SearchController < ApplicationController
 
     # raise
     # Determine whether we have in database.
-    # If we have in database, return the bird
+    # If zwe have in database, return the bird
     # Else create new bird records
   end
 end
