@@ -1,11 +1,6 @@
 require "openai"
-<<<<<<< HEAD
-require "json"
-require 'wikipedia'
-=======
 require 'wikipedia'
 require 'json'
->>>>>>> d5ccd449f96c525bcc80b919ed469f944a5e5f80
 
 class SearchController < ApplicationController
 
@@ -17,7 +12,7 @@ class SearchController < ApplicationController
   def results
     # Use OpenAI API for identification of bird
     client = OpenAI::Client.new(
-      access_token: "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",
+      access_token: ENV['OPENAI_API_KEY'],
       log_errors: true # Highly recommended in development, so you can see what errors OpenAI is returning. Not recommended in production because it could leak private data to your logs.
     )
 
@@ -42,22 +37,23 @@ class SearchController < ApplicationController
     @ai_results = @response.dig("choices", 0, "message", "content")
     @hash = JSON.load(@ai_results)
 
-    @hash["suggestions"].each do |suggestion|
-      if Bird.find_by(scientific_name: suggestion["scientific_name"])
-        @bird = Bird.find_by(scientific_name: suggestion["scientific_name"])
-      else
-        @bird = Bird.new(
-          species: suggestion["species"],
-          scientific_name: suggestion["scientific_name"],
-          habitat: suggestion["habitat"],
-          description: suggestion["description"],
-          distribution: suggestion["distribution"]
-        )
-        @bird.save!
-      end
-    end
 
-    raise
+    # @hash["suggestions"].each do |suggestion|
+    #   if Bird.find_by(scientific_name: suggestion["scientific_name"])
+    #     @bird = Bird.find_by(scientific_name: suggestion["scientific_name"])
+    #   else
+    #     @bird = Bird.new(
+    #       species: suggestion["species"],
+    #       scientific_name: suggestion["scientific_name"],
+    #       habitat: suggestion["habitat"],
+    #       description: suggestion["description"],
+    #       distribution: suggestion["distribution"]
+    #     )
+    #     @bird.save!
+    #   end
+    # end
+
+    # raise
     # Determine whether we have in database.
     # If we have in database, return the bird
     # Else create new bird records
