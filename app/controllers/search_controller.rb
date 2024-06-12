@@ -13,7 +13,7 @@ class SearchController < ApplicationController
 
   def results
     @photo = Photo.last
-    cloud_url = @photo.img.url
+    url = @photo.img.url
 
     # Use OpenAI API for identification of bird
     client = OpenAI::Client.new(
@@ -25,7 +25,7 @@ class SearchController < ApplicationController
       { "type": "text", "text": "Return the bird in the image as JSON with its species, scientific_name, habitat, distribution, description. Give me an array called 'birds' of 5 different JSON objects related to the bird in the image" },
       { "type": "image_url",
         "image_url": {
-          "url": cloud_url,
+          "url": url,
         },
       }
     ]
@@ -88,9 +88,24 @@ class SearchController < ApplicationController
     else
       # Handle the case where the response doesn't contain the expected data
       # You can raise an error, return nil, or handle it in some other way
-      raise "No recordings found in the response"
+      "No recordings found in the response"
     end
   end
+
+
+  # def get_audio_id(url)
+  #   query_result = URI.open(url).read
+  #   xeno_response = JSON.parse(query_result)
+
+  #   if xeno_response && xeno_response["recordings"] && xeno_response["recordings"].any?
+  #     audio = xeno_response["recordings"][0]["id"]
+  #     return audio
+  #   else
+  #     # Handle the case where the response doesn't contain the expected data
+  #     # You can raise an error, return nil, or handle it in some other way
+  #     raise "No recordings found in the response"
+  # end
+
 
   def get_image(sci_name)
     wiki_url = "https://en.wikipedia.org/w/api.php?action=query&prop=pageimages%7Cpageprops&format=json&piprop=thumbnail&titles=#{sci_name}&pithumbsize=300&redirects"
