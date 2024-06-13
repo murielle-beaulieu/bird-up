@@ -57,3 +57,43 @@ html, body {
 h2, h3 {
   text-align: center;
 }
+
+.meet-container {
+  width: 380px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+{
+
+// Forms
+  
+.form-container {
+  margin: 20px auto;
+  width: 400px;
+}
+
+// Buttons
+
+.poke-button {
+  background-color: rgb(255, 29, 29);
+  color: white;
+  border: solid 1px black;
+}
+
+.poke-button:hover {
+  cursor: pointer;
+  background-color: rgb(255, 174, 174);
+  border: solid 1px rgb(210, 210, 210);
+  color: #1a1a1a;
+  transition: 0.3s ease-in-out;
+}
+
+// Home Page Links
+
+.homepage-links {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}

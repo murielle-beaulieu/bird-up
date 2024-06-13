@@ -19,10 +19,10 @@ Rails.application.routes.draw do
 
   get "/search/results", to: "search#results", as: :results_search
 
-  resources :birds, only: [:show], as: :show_bird
-
-  resources :spottings, only: [:index, :show, :new, :create, :edit, :update, :destroy]
-  get "/spottings/success", to: "spottings#success", as: :success_spottings
+  resources :birds, only: [:show], as: :show_bird do
+    resources :spottings, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+    get "/spottings/success", to: "spottings#success", as: :success_spottings
+  end
 
   resources :photos, only: [:new, :create]
 
