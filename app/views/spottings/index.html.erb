@@ -1,0 +1,5 @@
+<h1>Your Spottings</h1>
+
+<%= @spottings.each do |spotting| %>
+  <p><%= spotting.bird.scientific_name %></p>
+<% end %>
