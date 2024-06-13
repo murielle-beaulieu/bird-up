@@ -22,7 +22,7 @@ class SearchController < ApplicationController
     )
 
     messages = [
-      { "type": "text", "text": "Return the bird in the image as JSON with its species, scientific_name, habitat, distribution, description" },
+      { "type": "text", "text": "Return the bird in the image as JSON with its species, scientific_name, habitat, distribution, description. Create an array 'birds' of 3 JSON objects related to the bird in the image." },
       { "type": "image_url",
         "image_url": {
           "url": url,
@@ -40,21 +40,30 @@ class SearchController < ApplicationController
     )
 
     @ai_results = @response.dig("choices", 0, "message", "content")
-    hash = JSON.load(@ai_results)
+    @hash = JSON.load(@ai_results)
 
-    if Bird.find_by(scientific_name: hash["scientific_name"])
-      @bird = Bird.find_by(scientific_name: hash["scientific_name"])
-    else
-      @bird = Bird.new(
-        species: hash["species"],
-        scientific_name: hash["scientific_name"],
-        habitat: hash["habitat"],
-        description: hash["description"],
-        distribution: hash["distribution"],
-        audio_url: get_audio(hash["scientific_name"], hash["species"]),
-        img_url: get_image(hash["scientific_name"])
-      )
-      @bird.save!
+    @birds_to_display = []
+
+    @hash["birds"].each do |suggestion|
+      if Bird.find_by(scientific_name: suggestion["scientific_name"])
+        @bird = Bird.find_by(scientific_name: suggestion["scientific_name"])
+        @birds_to_display << @bird
+      else
+        @bird = Bird.new(
+          species: suggestion["species"],
+          scientific_name: suggestion["scientific_name"],
+          habitat: suggestion["habitat"],
+          description: suggestion["description"],
+          distribution: suggestion["distribution"],
+          audio_url: get_audio(suggestion["scientific_name"], suggestion["species"]),
+          img_url: get_image(suggestion["scientific_name"])
+        )
+        @bird.save!
+        @birds_to_display << @bird
+      end
+
+      @main_bird = @birds_to_display[0]
+      @other_birds = @birds_to_display[1..-1]
     end
   end
 

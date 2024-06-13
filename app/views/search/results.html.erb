@@ -1,13 +1,29 @@
-<h2 style="margin-top: 30px;">We think you saw a <%= @bird.scientific_name %>!</h2>
+<h2 style="margin-top: 30px;">We think you saw a <%= @main_bird.scientific_name %>!</h2>
 
 <div class="card-container">
   <div class="card main-card">
-    <img src="<%= @bird.img_url %>">
+    <img src="<%= @main_bird.img_url %>">
     <div class="card-content">
-      <h4><strong><%= @bird.scientific_name %></strong></h4>
-      <h5><%= @bird.distribution %></h5>
-      <h6><%= @bird.habitat %></h6>
-      <%= link_to "Learn More", show_bird_path(@bird), class: "btn btn-outline-primary rounded" %>
+      <h4><strong><%= @main_bird.scientific_name %></strong></h4>
+      <h5><%= @main_bird.distribution %></h5>
+      <h6><%= @main_bird.habitat %></h6>
+      <%= link_to "Learn More", show_bird_path(@main_bird), class: "btn btn-outline-primary rounded" %>
     </div>
   </div>
+</div>
+
+<h3 style="margin-top: 10px;">See other possible options</h3>
+
+<div class="card-container">
+  <% @other_birds.each do |bird| %>
+    <div class="card">
+      <img src="<%= bird.img_url %>">
+      <div class="card-content">
+        <h4><strong><%= bird.scientific_name %></strong></h4>
+        <h5><%= bird.distribution %></h5>
+        <h6><%= bird.habitat %></h6>
+        <%= link_to "Learn More", show_bird_path(bird), class: "btn btn-outline-primary rounded" %>
+      </div>
+    </div>
+  <% end %>
 </div>
