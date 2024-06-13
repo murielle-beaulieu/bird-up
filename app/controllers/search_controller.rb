@@ -12,8 +12,8 @@ class SearchController < ApplicationController
 
 
   def results
-    # @photo = Photo.last
-    # url = @photo.img.url
+    @photo = Photo.last
+    url = @photo.img.url
 
     # Use OpenAI API for identification of bird
     client = OpenAI::Client.new(
