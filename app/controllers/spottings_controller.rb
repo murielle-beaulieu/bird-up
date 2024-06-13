@@ -15,17 +15,16 @@ class SpottingsController < ApplicationController
   end
 
   def create
+    
     @spotting = Spotting.new(spotting_params)
-    @spotting.user = current_user.id
-
-    @bird = Bird.find(params[:bird_id])
-    @spotting.bird = @bird
+    @spotting.user_id = current_user.id
 
     if @spotting.save
       redirect_to spottings_path
     else
       render :show_bird, status: :unprocessable_entity
     end
+
   end
 
   def edit
@@ -48,7 +47,7 @@ class SpottingsController < ApplicationController
   private
 
   def spotting_params
-    params.require(:spotting).permit(:date, :location)
+    params.require(:spotting).permit(:date, :location, :bird_id, :user_id)
   end
 
   # def set_spotting
