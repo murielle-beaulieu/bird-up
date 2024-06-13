@@ -22,7 +22,7 @@ class SearchController < ApplicationController
     )
 
     messages = [
-      { "type": "text", "text": "Return the bird in the image as JSON with its species, scientific_name, habitat, distribution, description. Give me an array called 'birds' of 5 different JSON objects related to the bird in the image" },
+      { "type": "text", "text": "Return the bird in the image as JSON with its species, scientific_name, habitat, distribution, description. Create an array 'birds' of 3 JSON objects related to the bird in the image." },
       { "type": "image_url",
         "image_url": {
           "url": url,
@@ -36,9 +36,9 @@ class SearchController < ApplicationController
           response_format: { type: "json_object" },
           messages: [{ role: "user", content: messages}], # Required.
           temperature: 0.7
-      })
-    # Receive JSON object and parse this response
-    # response.content = response.content.replace(/```json\n?|```/g, '');
+      }
+    )
+
     @ai_results = @response.dig("choices", 0, "message", "content")
     @hash = JSON.load(@ai_results)
 
@@ -65,10 +65,6 @@ class SearchController < ApplicationController
       @main_bird = @birds_to_display[0]
       @other_birds = @birds_to_display[1..-1]
     end
-
-    # Determine whether we have in database.
-    # If zwe have in database, return the bird
-    # Else create new bird records
   end
 
   private
@@ -116,5 +112,4 @@ class SearchController < ApplicationController
   def new_params
     params.require(:new).permit(:photo)
   end
-
 end
