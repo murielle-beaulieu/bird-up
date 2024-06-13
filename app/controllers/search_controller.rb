@@ -13,7 +13,7 @@ class SearchController < ApplicationController
 
   def results
     @photo = Photo.last
-    ai_url = @photo.img.url
+    url = @photo.img.url
 
     # Use OpenAI API for identification of bird
     client = OpenAI::Client.new(
@@ -25,7 +25,7 @@ class SearchController < ApplicationController
       { "type": "text", "text": "Return the bird in the image as JSON with its species, scientific_name, habitat, distribution, description. Give me an array called 'birds' of 5 different JSON objects related to the bird in the image" },
       { "type": "image_url",
         "image_url": {
-          "url": ai_url,
+          "url": url,
         },
       }
     ]
