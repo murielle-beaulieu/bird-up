@@ -1,11 +1,17 @@
 class SpottingsController < ApplicationController
-  before_action :set_spotting, only: [:show, :edit, :update, :destroy]
+  # before_action :set_spotting, only: [:show, :edit, :new, :update, :destroy]
 
   def index
     @spottings = Spotting.all
   end
 
   def show
+  end
+
+  def new
+    @bird = Bird.find(params[:bird_id])
+    @spotting = Spotting.new
+
   end
 
   def create
@@ -16,9 +22,9 @@ class SpottingsController < ApplicationController
     @spotting.bird = @bird
 
     if @spotting.save
-      redirect_to success_spottings_path
+      redirect_to spottings_path
     else
-      render :show_bird, status: unprocessable_entity
+      render :show_bird, status: :unprocessable_entity
     end
   end
 
@@ -45,7 +51,8 @@ class SpottingsController < ApplicationController
     params.require(:spotting).permit(:date, :location)
   end
 
-  def set_spotting
-    @spotting = Spotting.find(params[:id])
-  end
+  # def set_spotting
+  #   # raise
+  #   # @spotting = Spotting.find(params[:id])
+  # end
 end

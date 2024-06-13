@@ -1,0 +1,9 @@
+<h1>Your spotted list</h1>
+
+<% @spottings.each do |bird| %>
+<p><%= bird.scientific_name %></p>
+<p><%= bird.species %></p>
+<p><%= bird.description %></p>
+<p><%= bird.habitat %></p>
+<p><%= bird.distribution %></p>
+<%end%>

@@ -10,3 +10,6 @@
 <p><%= @bird.description %></p>
 <p><%= @bird.habitat %></p>
 <p><%= @bird.distribution %></p>
+
+
+<%= link_to "Save to Spotted List", new_spotting_path(@bird), method: :get %>

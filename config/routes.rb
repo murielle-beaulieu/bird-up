@@ -10,8 +10,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  resources :spottings, only: [:index, :show, :create, :edit, :update, :destroy]
-  get "/spottings/success", to: "spottings#success", as: :success_spottings
 
   resources :rankings, only: [:index]
 
@@ -22,6 +20,9 @@ Rails.application.routes.draw do
   get "/search/results", to: "search#results", as: :results_search
 
   resources :birds, only: [:show], as: :show_bird
+
+  resources :spottings, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  get "/spottings/success", to: "spottings#success", as: :success_spottings
 
   resources :photos, only: [:new, :create]
 
