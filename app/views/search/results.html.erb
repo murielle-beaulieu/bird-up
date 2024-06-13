@@ -7,7 +7,7 @@
       <h4><strong><%= @main_bird.scientific_name %></strong></h4>
       <h5><%= @main_bird.distribution %></h5>
       <h6><%= @main_bird.habitat %></h6>
-      <%= link_to "Learn More", '#', class: "btn btn-outline-primary rounded" %>
+      <%= link_to "Learn More", show_bird_path(@main_bird), class: "btn btn-outline-primary rounded" %>
     </div>
   </div>
 </div>
@@ -22,7 +22,7 @@
         <h4><strong><%= bird.scientific_name %></strong></h4>
         <h5><%= bird.distribution %></h5>
         <h6><%= bird.habitat %></h6>
-        <%= link_to "Learn More", '#', class: "btn btn-outline-primary rounded" %>
+        <%= link_to "Learn More", show_bird_path(bird), class: "btn btn-outline-primary rounded" %>
       </div>
     </div>
   <% end %>
