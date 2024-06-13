@@ -3,7 +3,7 @@
     <h1>Look up your bird</h1>
       <%= simple_form_for @photo, url: photos_path, method: :post do |f| %>
         <%= f.input :img, as: :file %>
-        <%= f.button :submit%>
+        <%= f.button :submit, "Search", class:"poke-button" %>
       <% end %>
   </div>
 </div>
