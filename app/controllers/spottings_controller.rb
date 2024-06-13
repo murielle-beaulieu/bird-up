@@ -9,7 +9,6 @@ class SpottingsController < ApplicationController
   end
 
   def create
-    
     @spotting = Spotting.new(spotting_params)
     @spotting.user_id = current_user.id
 
@@ -18,7 +17,9 @@ class SpottingsController < ApplicationController
     else
       render :show_bird, status: unprocessable_entity
     end
+  end
 
+  def success
   end
 
   def edit
