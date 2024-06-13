@@ -39,7 +39,6 @@ class SpottingsController < ApplicationController
   end
 
   def success
-    @spotting = Spotting.find(params[:id])
   end
 
 
