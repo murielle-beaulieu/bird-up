@@ -1,7 +1,6 @@
 <div class="card-container">
   <div class="meet-container">
-    <%= link_to "Back to Results", results_search_path, class: "btn btn-outline-primary rounded p-1 m-2" %>
-    <%= link_to "Add a Spotting", '/spottings/(@bird-id)', class: "btn btn-outline-primary rounded p-1 m-2" %>
+    <%= link_to "Back to Results", results_search_path, class: "poke-button p-1 m-2" %>
     <div>
       <h2 class="mt-3">Meet the <%= @bird.species %></h2>
     </div>
@@ -24,6 +23,14 @@
           <p><%= @bird.habitat %></p>
         </div>
       </div>
+    </div>
+    <div>
+      <%= simple_form_for @spotting,  url: spottings_path, method: :post do |f| %>
+        <%=f.input :bird_id, :as => :hidden, :input_html => { :value => params[:id] } %>
+        <%= f.input :location %>
+        <%# <%= f.input :date %>
+        <%= f.button :submit, class:'poke-button justify' %>
+      <% end %>
     </div>
   </div>
 </div>
