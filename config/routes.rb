@@ -13,9 +13,9 @@ Rails.application.routes.draw do
   get "/spottings/success", to: "spottings#success", as: :success_spottings
   resources :spottings, only: [:index, :show, :create, :edit, :update, :destroy]
 
-  resources :rankings, only: [:index]
+  resources :spottings, only: [:index, :show, :create, :edit, :update, :destroy]
 
-  get "/search/new", to: "search#new", as: :new_search
+  resources :rankings, only: [:index]
 
   post "search/img_to_cloudinary", to: "search#img_to_cloudinary", as: :img_to_cloudinary_search
 
