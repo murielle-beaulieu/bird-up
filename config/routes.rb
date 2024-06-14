@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  resources :spottings, only: [:index, :show, :create, :edit, :update, :destroy]
   get "/spottings/success", to: "spottings#success", as: :success_spottings
+  resources :spottings, only: [:index, :show, :create, :edit, :update, :destroy]
 
   resources :rankings, only: [:index]
 
