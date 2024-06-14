@@ -19,9 +19,6 @@ class SpottingsController < ApplicationController
     end
   end
 
-  def success
-  end
-
   def edit
   end
 
