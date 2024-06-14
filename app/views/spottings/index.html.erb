@@ -1,0 +1,26 @@
+<h2 style="margin-top: 30px;">Your Spotted List</h2>
+
+<div class="card-container">
+  <% @spottings.each do |spotting| %>
+    <div class="card">
+      <img src="<%= spotting.bird.img_url %>">
+      <div class="card-content">
+        <h4><strong><%= spotting.bird.species %></strong></h4>
+        <p><strong><%= spotting.bird.scientific_name %></strong></p>
+        <h5>Description:</h5>
+        <p><%= spotting.bird.description %></p>
+        <h5>Birds' Song:</h5>
+        <iframe src="https://xeno-canto.org/<%=spotting.bird.audio_url%>/embed?simple=1" scrolling='no' frameborder='0' width='300' height='115'></iframe>
+        <h5>Distribution:</h5>
+        <p><%= spotting.bird.distribution %></p>
+        <h5>Habitat:</h5>
+        <p><%= spotting.bird.habitat %></p>
+        <h5>Spotted Date:</h5>
+        <p><%= spotting.date %></p>
+        <h5>Spotted Location:</h5>
+        <p><%= spotting.location %></p>
+      </div>
+      </div>
+    <% end %>
+</div>
+
