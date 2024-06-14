@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   get "/spottings/:id/success", to: "spottings#success", as: :success_spottings
+
   resources :spottings, only: [:index, :show, :create, :edit, :update, :destroy]
 
   resources :rankings, only: [:index]
