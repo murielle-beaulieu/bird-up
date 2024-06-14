@@ -1,4 +1,5 @@
 class PhotosController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:new, :create]
 
   def new
     @photo = Photo.new

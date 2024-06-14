@@ -4,7 +4,7 @@ require 'json'
 require 'open-uri'
 
 class SearchController < ApplicationController
-
+  skip_before_action :authenticate_user!, only: [:results]
   def new
     # Nothing being passed in
     # Use new view for image upload
