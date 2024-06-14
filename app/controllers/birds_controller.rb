@@ -5,7 +5,5 @@ class BirdsController < ApplicationController
     @spotting = Spotting.new
     # raise
   end
-end
 
-# Person.find_or_create_by(name: 'Spartacus', rating: 4)
-# returns the first item or creates it and returns it.
+end

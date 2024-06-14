@@ -1,5 +1,5 @@
 class SpottingsController < ApplicationController
-  before_action :set_spotting, only: [:show, :edit, :update, :destroy]
+  before_action :set_spotting, only: [:show, :edit, :update, :destroy, :success]
 
   def index
     @spottings = Spotting.where(user_id: current_user)
@@ -13,7 +13,7 @@ class SpottingsController < ApplicationController
     @spotting.user_id = current_user.id
 
     if @spotting.save
-      redirect_to success_spottings_path
+      redirect_to success_spottings_path(@spotting)
     else
       render :show_bird, status: unprocessable_entity
     end
@@ -41,7 +41,6 @@ class SpottingsController < ApplicationController
 
   def success
   end
-
 
   private
 

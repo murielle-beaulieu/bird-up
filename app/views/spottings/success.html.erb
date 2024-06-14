@@ -1,1 +1,10 @@
-<h2>Success Page</h2>
+<h2>Successful Spotting!</h2>
+
+<div class="container d-flex justify-content-center">
+  <div>
+    <p>Congrats you've added a new bird to your spotted list!</p>
+
+    <%= link_to "Your Spotting List", spottings_path, class: "poke-button p-1 m-2" %>
+    <p>You've spotted <%= @spotting.bird_id%> birds!<p>
+  </div>
+</div>
