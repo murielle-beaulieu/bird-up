@@ -16,8 +16,6 @@ Rails.application.routes.draw do
 
   resources :rankings, only: [:index]
 
-  get "/search/new", to: "search#new", as: :new_search
-
   post "search/img_to_cloudinary", to: "search#img_to_cloudinary", as: :img_to_cloudinary_search
 
   get "/search/results", to: "search#results", as: :results_search
