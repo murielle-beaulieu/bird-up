@@ -2,14 +2,13 @@ class SpottingsController < ApplicationController
   before_action :set_spotting, only: [:show, :edit, :update, :destroy, :success]
 
   def index
-    @spottings = Spotting.all
+    @spottings = Spotting.where(user_id: current_user)
   end
 
   def show
   end
 
   def create
-
     @spotting = Spotting.new(spotting_params)
     @spotting.user_id = current_user.id
 
@@ -18,7 +17,9 @@ class SpottingsController < ApplicationController
     else
       render :show_bird, status: unprocessable_entity
     end
+  end
 
+  def success
   end
 
   def edit
