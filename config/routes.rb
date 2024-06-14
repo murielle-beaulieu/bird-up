@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :spottings, only: [:index, :show, :create, :edit, :update, :destroy]
 
-  resources :rankings, only: [:index]
+  resources :ranking, only: [:index]
 
   post "search/img_to_cloudinary", to: "search#img_to_cloudinary", as: :img_to_cloudinary_search
 

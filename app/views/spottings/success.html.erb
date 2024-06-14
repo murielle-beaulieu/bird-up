@@ -1,13 +1,16 @@
+<br>
 <h2>Successful Spotting!</h2>
 
-<div class="container d-flex justify-content-center">
-  <div class="justify-content-center">
+<div class="card-container d-flex justify-content-center">
+  <div class="card-content">
     <p>Congrats you've added a new bird to your spotted list!</p>
-    <div>
-    <img src="<%=@spotting.bird.img_url%>">
+    <div class="card">
+      <img src="<%=@spotting.bird.img_url%>">
     </div>
-    <%= link_to "Your Spotting List", spottings_path, class: "poke-button p-1 m-2" %>
-    <%= link_to "Rankings", rankings_path, class: "poke-button p-1 m-2"  %>
-
+    <div class="card-content">
+      <p>Well done, You've now have spotted <%=@user_spottings%> birds!</p>
+      <%= link_to "Your Spotting List", spottings_path, class: "poke-button p-1 m-2" %>
+      <%= link_to "Rankings", ranking_index_path, class: "poke-button p-1 m-2"  %>
+    </div>
   </div>
 </div>
