@@ -90,7 +90,7 @@ h2, h3 {
   transition: 0.3s ease-in-out;
 }
 
-// Home Page Links
+// Home Page
 
 .homepage-container {
   margin: 20px auto;
@@ -110,4 +110,7 @@ h2, h3 {
   text-align: center;
 }
 
-// Banner
+.homepage-image-container {
+  display: flex;
+  justify-content: center;
+}
