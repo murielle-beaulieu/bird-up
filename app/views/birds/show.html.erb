@@ -7,7 +7,7 @@
     <div class="card">
       <img src="<%= @bird.img_url %>">
       <div class="card-content">
-        <h3><strong><%= @bird.scientific_name %></strong></h4>
+        <h3><strong><%= @bird.scientific_name %></strong></h3>
         <div>
           <h4>Description:</h4>
           <p><%= @bird.description %></p>
@@ -29,7 +29,7 @@
         <%=f.input :bird_id, :as => :hidden, :input_html => { :value => params[:id] } %>
         <%= f.input :location %>
         <%# <%= f.input :date %>
-        <%= f.button :submit, class:'poke-button justify' %>
+        <%= f.button :submit, class:'poke-button' %>
       <% end %>
     </div>
   </div>

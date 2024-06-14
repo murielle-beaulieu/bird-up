@@ -2,7 +2,7 @@ class SpottingsController < ApplicationController
   before_action :set_spotting, only: [:show, :edit, :update, :destroy]
 
   def index
-    @spottings = Spotting.all
+    @spottings = Spotting.where(user_id: current_user)
   end
 
   def show
@@ -38,6 +38,10 @@ class SpottingsController < ApplicationController
     @spotting.destroy
     redirect_to spottings_path
   end
+
+  def success
+  end
+
 
   private
 
