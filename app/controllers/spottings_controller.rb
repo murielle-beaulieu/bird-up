@@ -3,6 +3,15 @@ class SpottingsController < ApplicationController
 
   def index
     @spottings = Spotting.where(user_id: current_user)
+
+    @markers = @spottings.geocoded.map do |spotting|
+      {
+        lat: spotting.latitude,
+        lng: spotting.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {spotting: spotting}),
+
+      }
+    end
   end
 
   def show

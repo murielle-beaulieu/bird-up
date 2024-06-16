@@ -3,7 +3,7 @@
 
 <div class="card-container d-flex justify-content-center">
   <div class="card-content">
-    <p>Congrats you've added a new bird to your spotted list!</p>
+    <p>Congrats you've added <%= @spotting.bird.species %> to your spotted list!</p>
     <div class="card">
       <img src="<%=@spotting.bird.img_url%>">
     </div>

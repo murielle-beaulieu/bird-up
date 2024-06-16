@@ -1,6 +1,36 @@
-<h2>Spotting for #bird</h2>
+<div style="display: flex; justify-content: right; padding-right: 20px; padding-top: 20px;">
+  <%= link_to "Return to Spotting List", spottings_path, class: "btn poke-button" %>
+</div>
 
-# For each spotting:
-# view the bird species and scientific name
-# view the location
-# view the date you've made this spotting
+<h2 style="margin-top: 30px;"><%= @spotting.bird.species %></h2>
+
+<div class="card-container">
+    <div class="card">
+      <img src="<%= @spotting.bird.img_url %>">
+      <div class="card-content">
+        <h4><strong><%= @spotting.bird.species %></strong></h4>
+        <p style="color: #636363"><em><%= @spotting.bird.scientific_name %></em></p>
+        <h5>Description:</h5>
+        <p><%= @spotting.bird.description %></p>
+        <h5>Birds' Song:</h5>
+        <iframe src="https://xeno-canto.org/<%=@spotting.bird.audio_url%>/embed?simple=1" scrolling='no' frameborder='0' width='300' height='115'></iframe>
+        <h5>Distribution:</h5>
+        <p><%= @spotting.bird.distribution %></p>
+        <h5>Habitat:</h5>
+        <p><%= @spotting.bird.habitat %></p>
+        <h5>Spotted Date:</h5>
+        <p><%= @spotting.date %></p>
+        <h5>Spotted Location:</h5>
+        <p><%= @spotting.location %></p>
+      </div>
+      </div>
+</div>
+
+
+<%# will need to add reduce to marker %>
+
+<div style="width: 100%; height: 600px;"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
