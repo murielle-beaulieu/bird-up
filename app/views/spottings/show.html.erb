@@ -22,6 +22,7 @@
         <p><%= @spotting.date %></p>
         <h5>Spotted Location:</h5>
         <p><%= @spotting.location %></p>
+      <%= link_to "Delete", spotting_path(@spotting), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "poke-button" %>
       </div>
       </div>
 </div>
