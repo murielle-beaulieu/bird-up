@@ -8,9 +8,10 @@
       <img src="<%=@spotting.bird.img_url%>">
     </div>
     <div class="card-content">
-      <p>Well done, You've now have spotted <%=@user_spottings%> birds!</p>
       <%= link_to "Your Spotting List", spottings_path, class: "btn poke-button" %>
       <%= link_to "Rankings", ranking_index_path, class: "btn poke-button"  %>
+      <h4 style ="padding-top: 12px">Well done, You've now have spotted <%=@user_spottings%> birds!</h4>
+      <h4> #<%= @current_user_rank %> in your region</h4>
     </div>
   </div>
 </div>
