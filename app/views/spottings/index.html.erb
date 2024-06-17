@@ -1,26 +1,22 @@
 <h2 style="margin-top: 30px;">Your Spotted List</h2>
 
+<div style="display: flex; justify-content: right; padding-right: 28px; padding-top: 20px;">
+  <%= link_to "Map View", mapview_spottings_path, class: "btn poke-button" %>
+</div>
+
+
 <div class="card-container">
   <% @spottings.each do |spotting| %>
     <div class="card">
       <img src="<%= spotting.bird.img_url %>">
-      <div class="card-content">
+      <div class="card-content", style="line-height: 0.5px;">
         <h4><strong><%= spotting.bird.species %></strong></h4>
-        <p><strong><%= spotting.bird.scientific_name %></strong></p>
-        <h5>Description:</h5>
-        <p><%= spotting.bird.description %></p>
-        <h5>Birds' Song:</h5>
-        <iframe src="https://xeno-canto.org/<%=spotting.bird.audio_url%>/embed?simple=1" scrolling='no' frameborder='0' width='300' height='115'></iframe>
-        <h5>Distribution:</h5>
-        <p><%= spotting.bird.distribution %></p>
-        <h5>Habitat:</h5>
-        <p><%= spotting.bird.habitat %></p>
-        <h5>Spotted Date:</h5>
-        <p><%= spotting.date %></p>
-        <h5>Spotted Location:</h5>
+        <h5>Location:</h5>
         <p><%= spotting.location %></p>
+        <h5>Date:</h5>
+        <p><%= spotting.date %></p>
       </div>
+        <%= link_to "See more", spotting_path(spotting), class: "btn poke-button" %>
       </div>
     <% end %>
 </div>
-

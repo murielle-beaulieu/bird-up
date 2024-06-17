@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_12_044359) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_16_025219) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +67,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_12_044359) do
     t.bigint "bird_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
     t.index ["bird_id"], name: "index_spottings_on_bird_id"
     t.index ["user_id"], name: "index_spottings_on_user_id"
   end

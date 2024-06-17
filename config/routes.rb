@@ -12,7 +12,11 @@ Rails.application.routes.draw do
 
   get "/spottings/:id/success", to: "spottings#success", as: :success_spottings
 
-  resources :spottings, only: [:index, :show, :create, :edit, :update, :destroy]
+  resources :spottings, only: [:index, :show, :create, :edit, :update, :destroy] do
+    collection do
+      get :mapview
+    end
+  end
 
   resources :ranking, only: [:index]
 

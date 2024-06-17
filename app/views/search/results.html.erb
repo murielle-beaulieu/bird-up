@@ -2,13 +2,14 @@
   <%= link_to "Search Again?", new_photo_path, class: "btn poke-button" %>
 </div>
 
-<h2 style="margin-top: 30px;">We think you saw a <%= @main_bird.scientific_name %>!</h2>
+<h2 style="margin-top: 30px;">We think you saw a <%= @main_bird.species %>!</h2>
 
 <div class="card-container">
   <div class="card main-card">
     <img src="<%= @main_bird.img_url %>">
     <div class="card-content">
-      <h4><strong><%= @main_bird.scientific_name %></strong></h4>
+      <h4><strong><%= @main_bird.species %></strong></h4>
+      <p style="color: #636363"><em><%= @main_bird.scientific_name %></em></p>
       <h5><%= @main_bird.distribution %></h5>
       <h6><%= @main_bird.habitat %></h6>
       <%= link_to "Learn More", show_bird_path(@main_bird), class: "btn poke-button" %>
@@ -23,7 +24,8 @@
     <div class="card">
       <img src="<%= bird.img_url %>">
       <div class="card-content">
-        <h4><strong><%= bird.scientific_name %></strong></h4>
+        <h4><strong><%= bird.species %></strong></h4>
+        <p style="color: #636363"><em><%= bird.scientific_name %></em></p>
         <h5><%= bird.distribution %></h5>
         <h6><%= bird.habitat %></h6>
         <%= link_to "Learn More", show_bird_path(bird), class: "btn poke-button" %>
