@@ -29,9 +29,11 @@
 
   <div class="form-container">
     <%= simple_form_for @spotting,  url: spottings_path, method: :post do |f| %>
-      <%=f.input :bird_id, :as => :hidden, :input_html => { :value => params[:id] } %>
+      <%= f.input :bird_id, :as => :hidden, :input_html => { :value => params[:id] } %>
       <%= f.input :location %>
-      <%= f.input :date %>
+      <%= f.input :date,
+        as: :string,
+        input_html: { data: { controller: "datepicker" } }%>
       <%= f.button :submit, class:'poke-button' %>
     <% end %>
   </div>
