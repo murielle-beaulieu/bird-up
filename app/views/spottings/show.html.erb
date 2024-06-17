@@ -2,37 +2,42 @@
   <%= link_to "Return to Spotting List", spottings_path, class: "btn poke-button" %>
 </div>
 
-<h2 style="margin-top: 30px;"><%= @spotting.bird.species %></h2>
-
-<div class="card-container">
-    <div class="card">
-      <img src="<%= @spotting.bird.img_url %>">
-      <div class="card-content">
-        <h4><strong><%= @spotting.bird.species %></strong></h4>
-        <p style="color: #636363"><em><%= @spotting.bird.scientific_name %></em></p>
-        <h5>Description:</h5>
-        <p><%= @spotting.bird.description %></p>
-        <h5>Birds' Song:</h5>
+<div style="display: flex; flex-direction: column; align-items: center;">
+  <div class="card" style="margin-bottom: 30px;">
+    <img src="<%= @spotting.bird.img_url %>">
+  </div>
+    <div class="card-content spotting-content">
+      <h2><strong><%= @spotting.bird.species %></strong></h2>
+      <h3 style="color: #636363"><em><%= @spotting.bird.scientific_name %></em></h3>
+      <div class="bird-song">
+        <h4>Birds Song</h4>
         <iframe src="https://xeno-canto.org/<%=@spotting.bird.audio_url%>/embed?simple=1" scrolling='no' frameborder='0' width='300' height='115'></iframe>
-        <h5>Distribution:</h5>
+      </div>
+      <div style= "width: 80%; text-align: center;">
+        <h4>Description</h4>
+        <p><%= @spotting.bird.description %></p>
+        <h4>Distribution</h4>
         <p><%= @spotting.bird.distribution %></p>
-        <h5>Habitat:</h5>
+        <h4>Habitat</h4>
         <p><%= @spotting.bird.habitat %></p>
-        <h5>Spotted Date:</h5>
+        <h4>Spotted Date</h4>
         <p><%= @spotting.date %></p>
-        <h5>Spotted Location:</h5>
+        <h4>Spotted Location</h4>
         <p><%= @spotting.location %></p>
       <%= link_to "Delete", spotting_path(@spotting), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "poke-button" %>
       </div>
+      <%= link_to "Edit details", edit_spotting_path(@spotting), class: "btn poke-button mx-3 mb-3" %>
+      <%= link_to "Delete from list", spotting_path(@spotting), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn poke-button mx-3 mb-3" %>
+
       </div>
+    </div>
 </div>
 
-<div class="card-container">
-  <div class="card-map">
-    <div style="width: 100%; height: 40rem;"
-        data-controller="map"
-        data-map-markers-value="<%= @markers.to_json %>"
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-      </div>
+<h4 style="margin-top: 30px; text-align: center; padding: 0px 80px;">Where You Spotted The <%= @spotting.bird.species %></h4>
+<div class="card-map">
+  <div style= "height: 40rem;"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 </div>
