@@ -26,7 +26,7 @@ export default class extends Controller {
       style: "mapbox://styles/mapbox/streets-v10"
     })
     this.#addMarkersToMap()
-    // this.#fitMapToMarkers() --> Not sure I want the map to only show the markers area, commented for now 16-06-24
+    this.#fitMapToMarkers()
 
     this.map.addControl(new MapboxGeocoder ({
       accessToken: mapboxgl.accessToken,
@@ -43,11 +43,10 @@ export default class extends Controller {
 
     })
   }
-
-  // #fitMapToMarkers() {  --> See line 29
-  //   const bounds = new mapboxgl.LngLatBounds()
-  //   this.markersValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
-  //   this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })
-  // }
+  #fitMapToMarkers() {
+    const bounds = new mapboxgl.LngLatBounds()
+    this.markersValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
+    this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })
+  }
 
 }

@@ -111,3 +111,23 @@ h2, h3 {
   display: flex;
   justify-content: center;
 }
+
+
+// Spottings
+
+.poke-button-sm {
+  background-color: rgb(255, 29, 29);
+  color: white;
+  border: solid 1px black;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.card-map {
+  width: 24rem;
+  height: 40rem;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
+  overflow: hidden;
+  flex-direction: column;
+}

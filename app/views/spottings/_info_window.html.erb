@@ -1,6 +1,12 @@
-<%# unsure about how to make it fit %>
-<%# <img src="<%= spotting.bird.img_url"> %> *image to come*
+<%# <h5><%= spotting.bird.species %>
+<%# <p><em><%= spotting.date%>
+<%# <p><%= spotting.location %>
 
-<h2><%= spotting.bird.species %></h2>
-<p><em><%= spotting.date%></em></p>
+<img src="<%= spotting.bird.img_url %>", style="margin-bottom: 12px">
+<p style="padding:8px"><strong><%= spotting.bird.species %></strong></p>
+<p>Location:</p>
 <p><%= spotting.location %></p>
+<p>Date:</p>
+<p><%= spotting.date %></p>
+
+<%= link_to "See more", spotting_path(spotting), class: "btn poke-button-sm" %>

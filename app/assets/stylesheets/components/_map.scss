@@ -5,7 +5,11 @@
 .mapboxgl-popup-content {
   text-align: center;
   font-family: "Open Sans", sans-serif;
+  line-height: 0.5px;
 }
 
-
-// to work on image styling here
+.mapboxgl-popup-content img {
+  width: 14rem;
+  height: 11rem;
+  object-fit: cover;
+}
