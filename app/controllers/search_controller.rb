@@ -85,10 +85,11 @@ class SearchController < ApplicationController
   def get_audio_object(name)
     query = name.split
     xeno_url = "https://xeno-canto.org/api/2/recordings?query="
-    query.each do |item|
-      xeno_url += "#{item}+"
-    end
-    xeno_url += "q:A"
+    xeno_url += "#{query[0]}+#{query[1]}+q:A"
+    # query.each do |item|
+    #   xeno_url += "#{item}+"
+    # end
+    # xeno_url += "q:A"
     query_result = URI.open(xeno_url).read
     xeno_response = JSON.parse(query_result)
     return xeno_response
