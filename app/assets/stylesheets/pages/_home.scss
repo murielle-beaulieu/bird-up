@@ -111,3 +111,23 @@ h2, h3 {
   display: flex;
   justify-content: center;
 }
+
+// Loading: Flying Bird
+
+.input-form {
+  position: relative;
+}
+
+.loading-bird {
+  position: absolute;
+  bottom: -8px;
+  left: 90px;
+  width: 60px;
+  height: 60px;
+}
+
+.loading-text {
+  position: absolute;
+  bottom: -13px;
+  left: 155px;
+}
