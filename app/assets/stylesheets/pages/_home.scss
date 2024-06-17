@@ -134,13 +134,35 @@ h2, h3 {
 }
 
 .card-map {
-  width: 24rem;
+  margin: 30px auto;
+  width: 90%;
   height: 40rem;
   border-radius: 8px;
   box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
   overflow: hidden;
   flex-direction: column;
 }
+
+.spotting-content {
+  max-width: 700px;
+  margin: 0 10px;
+  border-top: solid rgb(227, 227, 227);
+  border-bottom: solid rgb(227, 227, 227);
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.spotting-content p {
+  margin-bottom: 26px;
+}
+
+.bird-song {
+  border: solid 2px rgb(227, 227, 227);
+  border-radius: 8px;
+  padding: 8px;
+  margin-bottom: 6px;
+}
+
 // Loading: Flying Bird
 
 .input-form {
