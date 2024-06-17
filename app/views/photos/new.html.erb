@@ -1,9 +1,11 @@
 <div class="container d-flex justify-content-center">
-  <div style="margin: 30px">
+  <div class="input-form" style="margin: 30px" data-controller="loading">
     <h1>Look up your bird</h1>
       <%= simple_form_for @photo, url: photos_path, method: :post do |f| %>
         <%= f.input :img, as: :file %>
-        <%= f.button :submit, "Search", class:"poke-button" %>
+        <%= f.button :submit, "Search", class:"poke-button", data: { action: "click->loading#show" } %>
       <% end %>
+      <img src="https://res.cloudinary.com/dwbnezzsj/image/upload/v1718589880/birdflying_nfhqwc.gif" alt="flyingBird" class="loading-bird d-none" data-loading-target="bird">
+      <p class="loading-text d-none" data-loading-target="text">Loading...</p>
   </div>
 </div>
