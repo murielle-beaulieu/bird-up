@@ -84,7 +84,7 @@ h2, h3 {
   background-color: rgb(255, 174, 174);
   border: solid 1px rgb(210, 210, 210);
   color: #1a1a1a;
-  transition: 0.3s ease-in-out;
+  transition: 0.15s ease-in-out;
 }
 
 // Home Page
@@ -112,6 +112,16 @@ h2, h3 {
   justify-content: center;
 }
 
+.list {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.list a:hover {
+  color: rgb(210, 210, 210);
+  transition: 0.15s;
+}
 
 // Spottings
 
