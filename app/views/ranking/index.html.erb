@@ -1,10 +1,10 @@
-<h2>Rankings</h2>
+<h2 style="margin-top: 30px;">Rankings</h2>
 
 <div class="card-container d-flex justify-content-center">
     <div class="card-content">
       <h5><strong>BirdUp! users with the most spotted birds</strong></h5>
         <div style="border: solid 1px; padding: 24px">
-          <ol>
+          <ol style="padding-left: 12px; padding-right: 12px;">
             <% 10.times do |i| %>
               <% if @rankings[i] == nil %>
               <% else %>
@@ -18,7 +18,7 @@
             <% end %>
           </ol>
         </div>
-        <h4>You've spotted <%= @current_user_spottings %> birds!</h4>
+        <h4 style="margin-top: 12px;">You've spotted <%= @current_user_spottings %> birds!</h4>
         <h3>Your rank is #<%= @current_user_rank %></h3>
     </div>
 </div>
