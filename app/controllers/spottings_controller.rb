@@ -35,14 +35,17 @@ class SpottingsController < ApplicationController
   end
 
   def edit
+    @bird = Bird.find(@spotting.bird_id)
+    @spotting.user_id = current_user.id
+
   end
 
   def update
-
+    @spotting.user_id = current_user.id
     if @spotting.update(spotting_params)
       redirect_to spottings_path
     else
-      render :edit, status: :unprocessable_entity
+      render :edit_spotting, status: :unprocessable_entity
     end
   end
 
