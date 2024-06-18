@@ -7,5 +7,6 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-
+puts "Creating a chatroom..."
 Chatroom.create!(name: "The Nest")
+puts "done! :)"
