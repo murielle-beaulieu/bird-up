@@ -10,3 +10,22 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+// Links
+
+.navbar-link {
+  text-decoration: none;
+  color: black;
+}
+
+.navbar-link:hover {
+  text-decoration: none;
+  color: rgb(196, 196, 196);
+  transition: 0.15s;
+}
+
+// Media Query
+
+.show {
+  display: none;
+}
