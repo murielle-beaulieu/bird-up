@@ -2,18 +2,29 @@
   <%= link_to "Map View", mapview_spottings_path, class: "btn poke-button" %>
 </div>
 
-<h2 style="margin-top: 30px;">Your Spotted List</h2>
+<h2 style="margin-top: 30px;"> <%= current_user.username %>'s Spotted List</h2>
 
 <div class="card-container">
-  <% @spottings.reverse_each do |spotting| %>
-    <div class="card">
-      <img src="<%= spotting.bird.img_url %>">
-      <div class="card-content", style="line-height: 0.5px;">
-        <h4><strong><%= spotting.bird.species %></strong></h4>
-        <h5>Location:</h5>
-        <p><%= spotting.location %></p>
-        <%= link_to "See more", spotting_path(spotting), class: "btn poke-button" %>
-      </div>
+  <% if @spottings == [] %>
+    <% random_image = @birds.sample.img_url %>
+    <div class="card-content spotting-content">
+      <h3 class="my-3">Thank you for joining the BirdUp Community!</h3>
+      <img src="<%= random_image %>" alt="random bird image" class="rounded-4">
+      <h3 class="my-3">What are you waiting for...?</h3>
+      <h2 class="my-3">Upload an image and spot your first bird!</h2>
+      <%= link_to "Image Search", new_photo_path, class: "btn poke-button mx-3 mb-3" %>
     </div>
-    <% end %>
+  <% else %>
+    <% @spottings.reverse_each do |spotting| %>
+      <div class="card">
+        <img src="<%= spotting.bird.img_url %>">
+        <div class="card-content", style="line-height: 0.5px;">
+          <h4><strong><%= spotting.bird.species %></strong></h4>
+          <h5>Location:</h5>
+          <p><%= spotting.location %></p>
+          <%= link_to "See more", spotting_path(spotting), class: "btn poke-button" %>
+        </div>
+      </div>
+      <% end %>
+  <% end %>
 </div>
