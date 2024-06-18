@@ -12,19 +12,23 @@
           <%= link_to "Spottings", spottings_path, class: "navbar-link hide" %>
           <%= link_to "Rankings", ranking_index_path, class: "navbar-link hide" %>
           <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "navbar-link hide" %>
-          <%= image_tag "https://i.pinimg.com/originals/18/d9/e1/18d9e1307018dbc76750ca7d5124fccd.png", class: "avatar hide", alt: "dropdown menu" %>
+          <p class="hide" style="margin-bottom: 0; margin-left: 10px;"><%= current_user.username%></p>
+          <%= image_tag "https://i.pinimg.com/originals/18/d9/e1/18d9e1307018dbc76750ca7d5124fccd.png", class: "avatar hide", style: "margin-left: -10px;", alt: "dropdown menu" %>
         </div>
 
         <%# Dropdown Menu %>
 
-        <a href="#" class="avatar show" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= image_tag "https://i.pinimg.com/originals/18/d9/e1/18d9e1307018dbc76750ca7d5124fccd.png", class: "avatar show", alt: "dropdown menu" %>
-        </a>
-        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <%= link_to "Search Bird", new_photo_path, class: "dropdown-item" %>
-          <%= link_to "Spottings", spottings_path, class: "dropdown-item" %>
-          <%= link_to "Rankings", ranking_index_path, class: "dropdown-item" %>
-          <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+        <div class="show">
+          <p class="show" style="margin-bottom: 0; margin-left: 10px;"><%= current_user.username%></p>
+          <a href="#" class="avatar show" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= image_tag "https://i.pinimg.com/originals/18/d9/e1/18d9e1307018dbc76750ca7d5124fccd.png", class: "avatar show", alt: "dropdown menu" %>
+          </a>
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <%= link_to "Search Bird", new_photo_path, class: "dropdown-item" %>
+            <%= link_to "Spottings", spottings_path, class: "dropdown-item" %>
+            <%= link_to "Rankings", ranking_index_path, class: "dropdown-item" %>
+            <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+          </div>
         </div>
       <% else %>
         <div class="list">
