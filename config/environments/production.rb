@@ -101,5 +101,5 @@ Rails.application.configure do
 
 
   # Heroku Redis
-  config.cache_store = :redis_cache_store, { url: ENV['REDISCLOUD_URL'] }
+  config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] }
 end
