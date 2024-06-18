@@ -74,17 +74,17 @@ class SearchController < ApplicationController
     sci_response = get_audio_object(sci_name)
     spec_response = get_audio_object(species)
     if sci_response["numRecordings"] != "0"
-      audio = sci_response["recordings"][0]["id"]
+      audio = "https://xeno-canto.org/#{sci_response['recordings'][0]['id']}/embed?simple=1"
     elsif spec_response["numRecordings"] != "0"
-      audio = spec_response["recordings"][0]["id"]
+      audio = "https://xeno-canto.org/#{spec_response['recordings'][0]['id']}/embed?simple=1"
     else
-      audio = ""
+      audio = "/app/assets/images/fletchlingPokemonAudio.png"
     end
     return audio
   end
 
   def get_audio_object(name)
-    query = name.split
+    query = name.downcase.delete('^a-z ').split
     xeno_url = "https://xeno-canto.org/api/2/recordings?query="
     xeno_url += "#{query[0]}+#{query[1]}+q:A"
     # query.each do |item|
