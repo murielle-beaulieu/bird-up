@@ -19,6 +19,7 @@ class SpottingsController < ApplicationController
       {
         lat: @spotting.latitude,
         lng: @spotting.longitude,
+        info_window_html: "  You saw a #{@spotting.bird.species} here!   "
       }
     ]
   end
