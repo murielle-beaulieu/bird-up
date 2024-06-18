@@ -102,7 +102,7 @@ class SearchController < ApplicationController
     page_id = wiki_data["query"]["pages"].keys[0]
 
     if page_id == -1
-      image_url = "/app/assets/images/fletchlingPokemon.webp"
+      image_url = "/app/assets/images/fletchlingPokemon.png"
     else
       image_url = wiki_data["query"]["pages"][page_id]["thumbnail"]["source"]
     end
