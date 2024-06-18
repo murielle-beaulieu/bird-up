@@ -22,7 +22,7 @@ class SearchController < ApplicationController
     )
 
     messages = [
-      { "type": "text", "text": "Return the bird in the image as JSON with its species, scientific_name, habitat, distribution, description, score (based on rarity out of 100). Create an array 'birds' of 3 JSON objects related to the bird in the image." },
+      { "type": "text", "text": "Return the bird in the image as JSON with its species, scientific_name, habitat, distribution, description, score (based on rarity out of 100). Create an array 'birds' of 3 related JSON objects." },
       { "type": "image_url",
         "image_url": {
           "url": url,
@@ -41,7 +41,6 @@ class SearchController < ApplicationController
 
     @ai_results = @response.dig("choices", 0, "message", "content")
     @hash = JSON.load(@ai_results)
-
     @birds_to_display = []
 
     @hash["birds"].each do |suggestion|
