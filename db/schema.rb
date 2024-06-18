@@ -50,6 +50,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_16_025219) do
     t.string "distribution"
     t.string "img_url"
     t.string "audio_url"
+    t.integer "score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

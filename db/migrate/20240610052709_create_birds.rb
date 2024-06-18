@@ -8,6 +8,7 @@ class CreateBirds < ActiveRecord::Migration[7.1]
       t.string :distribution
       t.string :img_url
       t.string :audio_url
+      t.integer :score
 
       t.timestamps
     end

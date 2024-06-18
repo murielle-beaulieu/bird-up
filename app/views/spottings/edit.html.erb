@@ -16,7 +16,7 @@
   </div>
   <h2 class="mt-3">Enter the details of this spotting:</h2>
   <div class="form-container">
-    <%= simple_form_for @spotting, method: :patch do |f| %>
+    <%= simple_form_for @spotting, url: spotting_path, method: :patch do |f| %>
       <%= f.input :bird_id, :as => :hidden, :input_html => { :value => params[:id] } %>
       <%= f.input :location %>
       <%= f.input :date,
