@@ -3,14 +3,17 @@ class SpottingsController < ApplicationController
 
   def index
     @spottings = Spotting.where(user_id: current_user)
-
-    @markers = @spottings.geocoded.map do |spotting|
-      {
-        lat: spotting.latitude,
-        lng: spotting.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: {spotting: spotting}),
-        marker_html: render_to_string(partial: "marker")
-      }
+    if @spottings == []
+      @birds = Bird.all
+    else
+      @markers = @spottings.geocoded.map do |spotting|
+        {
+          lat: spotting.latitude,
+          lng: spotting.longitude,
+          info_window_html: render_to_string(partial: "info_window", locals: {spotting: spotting}),
+          marker_html: render_to_string(partial: "marker")
+        }
+      end
     end
   end
 
@@ -19,6 +22,7 @@ class SpottingsController < ApplicationController
       {
         lat: @spotting.latitude,
         lng: @spotting.longitude,
+        info_window_html: "  You saw a #{@spotting.bird.species} here!   "
       }
     ]
   end
