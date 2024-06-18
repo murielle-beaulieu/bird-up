@@ -10,7 +10,7 @@
       <h2><strong><%= @spotting.bird.species %></strong></h2>
       <h3 style="color: #636363"><em><%= @spotting.bird.scientific_name %></em></h3>
       <div class="bird-song">
-        <h4>Birds Song</h4>
+        <h4>Bird Song</h4>
         <iframe src="https://xeno-canto.org/<%=@spotting.bird.audio_url%>/embed?simple=1" scrolling='no' frameborder='0' width='300' height='115'></iframe>
       </div>
       <div style= "width: 80%; text-align: center;">
@@ -24,6 +24,8 @@
         <p><%= @spotting.date %></p>
         <h4>Spotted Location</h4>
         <p><%= @spotting.location %></p>
+        <h4>Score</h4>
+        <p><%= @spotting.bird.score %></p>
       </div>
       <%= link_to "Edit details", edit_spotting_path(@spotting), class: "btn poke-button mx-3 mb-3" %>
       <%= link_to "Delete from list", spotting_path(@spotting), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn poke-button mx-3 mb-3" %>

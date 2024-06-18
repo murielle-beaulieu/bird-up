@@ -12,8 +12,8 @@
         <h4><strong><%= spotting.bird.species %></strong></h4>
         <h5>Location:</h5>
         <p><%= spotting.location %></p>
+        <%= link_to "See more", spotting_path(spotting), class: "btn poke-button" %>
       </div>
-        <%= link_to "See more", spotting_path(spotting), class: "btn poke-button mx-3 mb-3" %>
-      </div>
+    </div>
     <% end %>
 </div>

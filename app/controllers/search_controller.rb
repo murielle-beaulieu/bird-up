@@ -22,7 +22,7 @@ class SearchController < ApplicationController
     )
 
     messages = [
-      { "type": "text", "text": "Return the bird in the image as JSON with its species, scientific_name, habitat, distribution, description. Create an array 'birds' of 3 JSON objects related to the bird in the image." },
+      { "type": "text", "text": "Return the bird in the image as JSON with its species, scientific_name, habitat, distribution, description, score (based on rarity out of 100). Create an array 'birds' of 3 JSON objects related to the bird in the image." },
       { "type": "image_url",
         "image_url": {
           "url": url,
@@ -56,7 +56,8 @@ class SearchController < ApplicationController
           description: suggestion["description"],
           distribution: suggestion["distribution"],
           audio_url: get_audio(suggestion["scientific_name"], suggestion["species"]),
-          img_url: get_image(suggestion["scientific_name"])
+          img_url: get_image(suggestion["scientific_name"]),
+          score: suggestion["score"]
         )
         @bird.save!
         @birds_to_display << @bird

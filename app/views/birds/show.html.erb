@@ -2,32 +2,30 @@
   <%= link_to "Back To Results", :back, class: "btn poke-button" %>
 </div>
 
-  <div style="margin: 28px auto;">
-    <h2 class="mt-3">Meet the <%= @bird.species %></h2>
-  </div>
-  <div class="card show-bird" style="margin: 0 auto;">
+  <div style="display: flex; flex-direction: column; align-items: center;">
+  <div class="card" style="margin-bottom: 30px;">
     <img src="<%= @bird.img_url %>">
-    <div class="card-content">
-      <h3><strong><%= @bird.species %></strong></h3>
-        <p style="color: #636363"><em><%= @bird.scientific_name %></em></p>
-      <div>
-        <h4>Description:</h4>
-        <p><%= @bird.description %></p>
-      </div>
-      <div>
-        <h4>Birds' Song:</h4>
-        <iframe src="https://xeno-canto.org/<%=@bird.audio_url%>/embed?simple=1" scrolling='no' frameborder='0' width='300' height='115'></iframe>
-      </div>
-      <div class="text-align-start">
-        <h4>Distribution:</h4>
-        <p><%= @bird.distribution %></p>
-        <h4>Habitat:</h4>
-        <p><%= @bird.habitat %></p>
-      </div>
+  </div>
+  <div class="card-content spotting-content">
+    <h2><strong><%= @bird.species %></strong></h2>
+    <h3 style="color: #636363"><em><%= @bird.scientific_name %></em></h3>
+    <div class="bird-song">
+      <h4>Bird Song</h4>
+      <iframe src="https://xeno-canto.org/<%=@bird.audio_url%>/embed?simple=1" scrolling='no' frameborder='0' width='300' height='115'></iframe>
+    </div>
+    <div style= "width: 80%; text-align: center;">
+      <h4>Description</h4>
+      <p><%= @bird.description %></p>
+      <h4>Distribution</h4>
+      <p><%= @bird.distribution %></p>
+      <h4>Habitat</h4>
+      <p><%= @bird.habitat %></p>
+      <h4>Score</h4>
+      <p style="margin: 0;"><%= @bird.score %></p>
     </div>
   </div>
 
-  <div class="form-container">
+  <div class="form-container" style="margin-bottom: 40px;">
     <%= simple_form_for @spotting,  url: spottings_path, method: :post do |f| %>
       <%= f.input :bird_id, :as => :hidden, :input_html => { :value => params[:id] } %>
       <%= f.input :location %>
