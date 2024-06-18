@@ -11,7 +11,7 @@
     <h3 style="color: #636363"><em><%= @bird.scientific_name %></em></h3>
     <div class="bird-song">
       <h4>Bird Song</h4>
-      <iframe src="https://xeno-canto.org/<%=@bird.audio_url%>/embed?simple=1" scrolling='no' frameborder='0' width='300' height='115'></iframe>
+      <iframe src="<%=@bird.audio_url%>" scrolling='no' frameborder='0' width='300' height='115'></iframe>
     </div>
     <div style= "width: 80%; text-align: center;">
       <h4>Description</h4>
