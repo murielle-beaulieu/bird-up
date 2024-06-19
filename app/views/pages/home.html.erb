@@ -1,23 +1,13 @@
-<div class="homepage-image-container">
-  <img src="https://res.cloudinary.com/dzianoxs7/image/upload/v1718331510/file_hxyjed.png" alt="flying kookaburra">
-</div>
-
-<div class="homepage-container">
+<div style="position: relative;">
+<%= image_tag "bannerBird.jpg", class: "banner", alt: "parrot"%>
+<div class="banner-content">
+  <h2 style="margin-bottom: 20px; color:white;">
+  Meet your new birdwatching companion, Bird Up!
+  </h2>
+  <h5 style="margin-bottom: 20px; color:white;">
+  Identify birds and connect with other birdwatchers in your area.
+  </h5>
   <div>
-  <%= link_to "Look for a new bird", new_photo_path, class: "btn poke-button", style: "font-size: 28px;"%>
-  </div>
-  <div class="homepage-description">
-    <p>
-    Meet your new birdwatching companion, Bird Up!
-    </p>
-    <p style="margin-top: 10px;">
-    Identify birds and connect with other birdwatchers in your area.
-    </p>
-  </div>
-  <div>
-  <%= link_to "See your spotted list", spottings_path, class: "btn poke-button" %>
-  </div>
-  <div>
-  <%= link_to "Rankings", ranking_index_path, class: "btn poke-button" %>
+    <%= link_to "Look for a new bird", new_photo_path, class: "btn poke-button", style: "font-size: 28px;" %>
   </div>
 </div>
