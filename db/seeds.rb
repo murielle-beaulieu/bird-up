@@ -34,10 +34,6 @@ def get_audio_object(name)
   query = name.downcase.delete('^a-z ').split
   xeno_url = "https://xeno-canto.org/api/2/recordings?query="
   xeno_url += "#{query[0]}+#{query[1]}+q:A"
-  # query.each do |item|
-  #   xeno_url += "#{item}+"
-  # end
-  # xeno_url += "q:A"
   query_result = URI.open(xeno_url).read
   xeno_response = JSON.parse(query_result)
   return xeno_response
@@ -59,44 +55,6 @@ def get_image(sci_name)
 end
 
 # User database seed
-puts "Adding fake users..."
-
-3.times do
-  user = User.new(
-    username: "#{Faker::Artist.name}_wing",
-    email: Faker::Internet.email(domain: 'gmail.com'),
-    password: "88888888"
-  )
-  user.save!
-end
-
-3.times do
-  user = User.new(
-    username: "#{Faker::Ancient.hero}_bird",
-    email: Faker::Internet.email(domain: 'gmail.com'),
-    password: "88888888"
-  )
-  user.save!
-end
-
-3.times do
-  user = User.new(
-    username: "#{Faker::Beer.hop}_nest",
-    email: Faker::Internet.email(domain: 'gmail.com'),
-    password: "88888888"
-  )
-  user.save!
-end
-
-3.times do
-  user = User.new(
-    username: "#{Faker::Computer.platform}_hawk",
-    email: Faker::Internet.email(domain: 'gmail.com'),
-    password: "88888888"
-  )
-  user.save!
-end
-
 puts "Adding real users..."
 
 user = User.new(
@@ -120,17 +78,33 @@ user = User.new(
 )
 user.save!
 
-# 3.times do
-#   user = User.new(
-#     username: "#{Faker::DcComics.hero}_talon",
-#     email: Faker::Internet.email(domain: 'gmail.com'),
-#     password: "88888888"
-#   )
-#   user.save!
-# end
+puts "Adding fake users..."
+
+birdWatchingUsernames = [
+  "FeatherFanatic",
+  "WingWatcher",
+  "BirdSongLover",
+  "TalonTrekker",
+  "AviaryAdmirer",
+  "SparrowSpotter",
+  "NestNutzer",
+  "OwlObserver",
+  "FinchFollower",
+  "RobinRanger",
+  "ParrotPal",
+  "HawkHobbyist"
+]
+
+12.times do |i|
+  user = User.new(
+    username: birdWatchingUsernames[i],
+    email: "#{birdWatchingUsernames[i]}@gmail.com",
+    password: "88888888"
+  )
+  user.save!
+end
 
 puts "15 users created!"
-
 
 # Bird database seed
 puts "Building Bird database..."
@@ -554,6 +528,7 @@ puts "Creating bird spottings..."
       user_id: user_num
     )
     spotting.save!
+    puts "#{spotting.bird.species} seen at #{spotting.location}"
   end
 end
 
@@ -566,4 +541,8 @@ puts "Chatroom ready! :)"
 
 puts "SEED COMPLETE --- BIRDUP!"
 seed_end = Time.new
-puts "Total time to seed: #{seed_end - seed_start} seconds"
+difference = seed_end - seed_start
+seconds    =  difference % 60
+difference = (difference - seconds) / 60
+minutes    =  difference % 60
+puts "Total time to seed: #{minutes} minutes #{seconds} seconds"
