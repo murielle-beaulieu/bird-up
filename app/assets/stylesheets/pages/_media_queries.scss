@@ -5,7 +5,13 @@
 }
 
 @media(max-width: 650px) {
-  .show {
+  .mobile {
     display: inline;
+  }
+}
+
+@media(max-width: 650px) {
+  .banner-content {
+    width: 400px;
   }
 }

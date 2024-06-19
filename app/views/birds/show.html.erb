@@ -11,7 +11,11 @@
     <h3 style="color: #636363"><em><%= @bird.scientific_name %></em></h3>
     <div class="bird-song">
       <h4>Bird Song</h4>
-      <iframe src="<%=@bird.audio_url%>" scrolling='no' frameborder='0' width='300' height='115'></iframe>
+      <% if @bird.audio_url.include?("xeno-canto") %>
+        <iframe src="<%=@bird.audio_url%>" scrolling='no' frameborder='0' width='300' height='115'></iframe>
+      <% else %>
+        <img src="/assets/images/fletchlingPokemonAudio.png" alt="Audio recording is not available">
+      <% end %>
     </div>
     <div style= "width: 80%; text-align: center;">
       <h4>Description</h4>
@@ -21,7 +25,7 @@
       <h4>Habitat</h4>
       <p><%= @bird.habitat %></p>
       <h4>Score</h4>
-      <p style="margin: 0;"><%= @bird.score %></p>
+      <p style="margin: 0;"><%= @bird.score %> ⭐</p>
     </div>
   </div>
 

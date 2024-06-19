@@ -78,6 +78,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
+# OpenAi Api Gem for Ruby
 gem "ruby-openai"
 
 gem "wikipedia-client"
@@ -90,3 +91,7 @@ gem "geocoder"
 # Background jobs
 gem "sidekiq", "~> 7"
 gem "sidekiq-failures"
+
+# Faker Gem
+gem 'faker'
+
