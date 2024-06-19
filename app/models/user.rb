@@ -6,4 +6,7 @@ class User < ApplicationRecord
   has_many :birds, through: :spottings
   has_many :spottings
   validates :username, presence: true
+  validates :username, uniqueness: true
+
+  has_one_attached :image
 end
