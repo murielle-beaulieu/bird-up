@@ -87,15 +87,10 @@ birdWatchingUsernames = [
   "TalonTrekker",
   "AviaryAdmirer",
   "SparrowSpotter",
-  "NestNutzer",
-  "OwlObserver",
-  "FinchFollower",
-  "RobinRanger",
-  "ParrotPal",
-  "HawkHobbyist"
+  "NestNutzer"
 ]
 
-12.times do |i|
+7.times do |i|
   user = User.new(
     username: birdWatchingUsernames[i],
     email: "#{birdWatchingUsernames[i]}@gmail.com",
@@ -104,7 +99,7 @@ birdWatchingUsernames = [
   user.save!
 end
 
-puts "15 users created!"
+puts "#{User.all.count} users created!"
 
 # Bird database seed
 puts "Building Bird database..."
@@ -182,206 +177,206 @@ puts "Building Bird database..."
     "description": "A large, intelligent bird with glossy black plumage and a distinctive call.",
     "score": 45
   },
-  {
-    "species": "Green Peafowl",
-    "scientific_name": "Pavo muticus",
-    "habitat": "Forests, grasslands, and riverbanks",
-    "distribution": "Southeast Asia",
-    "description": "A large, colorful bird known for the male's impressive tail display.",
-    "score": 85
-  },
-  {
-    "species": "Oriental Cuckoo",
-    "scientific_name": "Cuculus optatus",
-    "habitat": "Forests, woodlands, and scrublands",
-    "distribution": "Asia, Australia (non-breeding)",
-    "description": "A slender, secretive bird known for its distinctive call and brood parasitism.",
-    "score": 60
-  },
-  {
-    "species": "Magpie-lark",
-    "scientific_name": "Grallina cyanoleuca",
-    "habitat": "Open forests, grasslands, and urban areas",
-    "distribution": "Australia, New Guinea",
-    "description": "A medium-sized bird with striking black-and-white plumage and a loud, melodious song.",
-    "score": 50
-  },
-  {
-    "species": "New Zealand Bellbird",
-    "scientific_name": "Anthornis melanura",
-    "habitat": "Forests, scrublands, and gardens",
-    "distribution": "New Zealand",
-    "description": "A small, greenish bird known for its beautiful, bell-like song.",
-    "score": 55
-  },
-  {
-    "species": "Kakapo",
-    "scientific_name": "Strigops habroptilus",
-    "habitat": "Forests",
-    "distribution": "New Zealand (restricted islands)",
-    "description": "A large, nocturnal parrot that is flightless and critically endangered.",
-    "score": 97
-  },
-  {
-    "species": "Australian Brush-turkey",
-    "scientific_name": "Alectura lathami",
-    "habitat": "Rainforests and woodlands",
-    "distribution": "Eastern Australia",
-    "description": "A large bird known for its mound-building nesting behavior and bald, red head.",
-    "score": 50
-  },
-  {
-    "species": "Hoary-headed Grebe",
-    "scientific_name": "Poliocephalus poliocephalus",
-    "habitat": "Lakes, ponds, and wetlands",
-    "distribution": "Australia, New Zealand",
-    "description": "A small waterbird with distinctive silvery-white streaked head.",
-    "score": 65
-  },
-  {
-    "species": "Laughing Kookaburra",
-    "scientific_name": "Dacelo novaeguineae",
-    "habitat": "Woodlands, forests, and urban areas",
-    "distribution": "Australia, New Guinea",
-    "description": "A large kingfisher known for its distinctive laughing call.",
-    "score": 55
-  },
-  {
-    "species": "Common Bronzewing",
-    "scientific_name": "Phaps chalcoptera",
-    "habitat": "Open woodlands, forests, and scrublands",
-    "distribution": "Australia",
-    "description": "A medium-sized pigeon with striking bronze-green wing patches.",
-    "score": 50
-  },
-  {
-    "species": "Yellow-faced Honeyeater",
-    "scientific_name": "Lichenostomus melanops",
-    "habitat": "Forests, woodlands, and gardens",
-    "distribution": "Eastern Australia",
-    "description": "A medium-sized honeyeater with a distinctive yellow stripe on its face.",
-    "score": 45
-  },
-  {
-    "species": "Hooded Pitta",
-    "scientific_name": "Pitta sordida",
-    "habitat": "Forests, mangroves, and plantations",
-    "distribution": "Southeast Asia, New Guinea, Northern Australia",
-    "description": "A striking bird with a vivid green body, black head, and red underparts.",
-    "score": 70
-  },
-  {
-    "species": "Australian Magpie",
-    "scientific_name": "Gymnorhina tibicen",
-    "habitat": "Open forests, grasslands, urban areas",
-    "distribution": "Australia, New Guinea",
-    "description": "A highly intelligent bird known for its warbling song and striking black-and-white plumage.",
-    "score": 35
-  },
-  {
-    "species": "Kea",
-    "scientific_name": "Nestor notabilis",
-    "habitat": "Alpine regions, forests",
-    "distribution": "New Zealand",
-    "description": "A large, intelligent parrot known for its curiosity and playful behavior.",
-    "score": 80
-  },
-  {
-    "species": "Common Myna",
-    "scientific_name": "Acridotheres tristis",
-    "habitat": "Urban areas, farmlands, forests",
-    "distribution": "Asia, Australia, and Pacific islands",
-    "description": "An adaptive bird known for its loud calls and mimicry.",
-    "score": 40
-  },
-  {
-    "species": "Australian Shelduck",
-    "scientific_name": "Tadorna tadornoides",
-    "habitat": "Lakes, rivers, wetlands",
-    "distribution": "Australia",
-    "description": "A large, colorful duck known for its striking plumage and loud, honking call.",
-    "score": 50
-  },
-  {
-    "species": "Akiapolaau",
-    "scientific_name": "Hemignathus wilsoni",
-    "habitat": "Forests",
-    "distribution": "Hawaii",
-    "description": "A rare Hawaiian honeycreeper with a distinctive curved bill used to extract insects from tree bark.",
-    "score": 90
-  },
-  {
-    "species": "Red-flanked Lorikeet",
-    "scientific_name": "Charmosyna placentis",
-    "habitat": "Lowland forests",
-    "distribution": "New Guinea, islands in the Pacific",
-    "description": "A small, colorful parrot known for its vibrant plumage and acrobatic feeding behavior.",
-    "score": 65
-  },
-  {
-    "species": "Masked Owl",
-    "scientific_name": "Tyto novaehollandiae",
-    "habitat": "Woodlands, forests, farmlands",
-    "distribution": "Australia, New Guinea",
-    "description": "A medium-sized owl known for its heart-shaped face and predatory skills.",
-    "score": 70
-  },
-  {
-    "species": "Southern Brown Kiwi",
-    "scientific_name": "Apteryx australis",
-    "habitat": "Forests, scrublands",
-    "distribution": "New Zealand",
-    "description": "A flightless, nocturnal bird with a long beak, known as the national symbol of New Zealand.",
-    "score": 85
-  },
-  {
-    "species": "Satin Flycatcher",
-    "scientific_name": "Myiagra cyanoleuca",
-    "habitat": "Woodlands, forests",
-    "distribution": "Australia, New Guinea",
-    "description": "A small, insectivorous bird with striking blue-black plumage in males.",
-    "score": 55
-  },
-  {
-    "species": "Little Penguin",
-    "scientific_name": "Eudyptula minor",
-    "habitat": "Coastal waters and islands",
-    "distribution": "Australia, New Zealand",
-    "description": "The smallest species of penguin, known for its blue and white plumage and nocturnal habits.",
-    "score": 75
-  },
-  {
-    "species": "Pied Cormorant",
-    "scientific_name": "Phalacrocorax varius",
-    "habitat": "Coastal waters, lakes, rivers",
-    "distribution": "Australia, New Zealand",
-    "description": "A large waterbird known for its black-and-white plumage and diving ability.",
-    "score": 45
-  },
-  {
-    "species": "Noisy Miner",
-    "scientific_name": "Manorina melanocephala",
-    "habitat": "Woodlands, urban areas",
-    "distribution": "Eastern Australia",
-    "description": "A highly social bird known for its noisy calls and aggressive behavior towards other birds.",
-    "score": 30
-  },
-  {
-    "species": "Eastern Yellow Robin",
-    "scientific_name": "Eopsaltria australis",
-    "habitat": "Forests, woodlands, gardens",
-    "distribution": "Eastern Australia",
-    "description": "A small bird with bright yellow underparts and an inquisitive nature.",
-    "score": 55
-  },
-  {
-    "species": "Sacred Kingfisher",
-    "scientific_name": "Todiramphus sanctus",
-    "habitat": "Forests, mangroves, coastal areas",
-    "distribution": "Australia, New Zealand, Pacific islands",
-    "description": "A medium-sized kingfisher with striking blue and white plumage.",
-    "score": 50
-  }
+  # {
+  #   "species": "Green Peafowl",
+  #   "scientific_name": "Pavo muticus",
+  #   "habitat": "Forests, grasslands, and riverbanks",
+  #   "distribution": "Southeast Asia",
+  #   "description": "A large, colorful bird known for the male's impressive tail display.",
+  #   "score": 85
+  # },
+  # {
+  #   "species": "Oriental Cuckoo",
+  #   "scientific_name": "Cuculus optatus",
+  #   "habitat": "Forests, woodlands, and scrublands",
+  #   "distribution": "Asia, Australia (non-breeding)",
+  #   "description": "A slender, secretive bird known for its distinctive call and brood parasitism.",
+  #   "score": 60
+  # },
+  # {
+  #   "species": "Magpie-lark",
+  #   "scientific_name": "Grallina cyanoleuca",
+  #   "habitat": "Open forests, grasslands, and urban areas",
+  #   "distribution": "Australia, New Guinea",
+  #   "description": "A medium-sized bird with striking black-and-white plumage and a loud, melodious song.",
+  #   "score": 50
+  # },
+  # {
+  #   "species": "New Zealand Bellbird",
+  #   "scientific_name": "Anthornis melanura",
+  #   "habitat": "Forests, scrublands, and gardens",
+  #   "distribution": "New Zealand",
+  #   "description": "A small, greenish bird known for its beautiful, bell-like song.",
+  #   "score": 55
+  # },
+  # {
+  #   "species": "Kakapo",
+  #   "scientific_name": "Strigops habroptilus",
+  #   "habitat": "Forests",
+  #   "distribution": "New Zealand (restricted islands)",
+  #   "description": "A large, nocturnal parrot that is flightless and critically endangered.",
+  #   "score": 97
+  # },
+  # {
+  #   "species": "Australian Brush-turkey",
+  #   "scientific_name": "Alectura lathami",
+  #   "habitat": "Rainforests and woodlands",
+  #   "distribution": "Eastern Australia",
+  #   "description": "A large bird known for its mound-building nesting behavior and bald, red head.",
+  #   "score": 50
+  # },
+  # {
+  #   "species": "Hoary-headed Grebe",
+  #   "scientific_name": "Poliocephalus poliocephalus",
+  #   "habitat": "Lakes, ponds, and wetlands",
+  #   "distribution": "Australia, New Zealand",
+  #   "description": "A small waterbird with distinctive silvery-white streaked head.",
+  #   "score": 65
+  # },
+  # {
+  #   "species": "Laughing Kookaburra",
+  #   "scientific_name": "Dacelo novaeguineae",
+  #   "habitat": "Woodlands, forests, and urban areas",
+  #   "distribution": "Australia, New Guinea",
+  #   "description": "A large kingfisher known for its distinctive laughing call.",
+  #   "score": 55
+  # },
+  # {
+  #   "species": "Common Bronzewing",
+  #   "scientific_name": "Phaps chalcoptera",
+  #   "habitat": "Open woodlands, forests, and scrublands",
+  #   "distribution": "Australia",
+  #   "description": "A medium-sized pigeon with striking bronze-green wing patches.",
+  #   "score": 50
+  # },
+  # {
+  #   "species": "Yellow-faced Honeyeater",
+  #   "scientific_name": "Lichenostomus melanops",
+  #   "habitat": "Forests, woodlands, and gardens",
+  #   "distribution": "Eastern Australia",
+  #   "description": "A medium-sized honeyeater with a distinctive yellow stripe on its face.",
+  #   "score": 45
+  # },
+  # {
+  #   "species": "Hooded Pitta",
+  #   "scientific_name": "Pitta sordida",
+  #   "habitat": "Forests, mangroves, and plantations",
+  #   "distribution": "Southeast Asia, New Guinea, Northern Australia",
+  #   "description": "A striking bird with a vivid green body, black head, and red underparts.",
+  #   "score": 70
+  # },
+  # {
+  #   "species": "Australian Magpie",
+  #   "scientific_name": "Gymnorhina tibicen",
+  #   "habitat": "Open forests, grasslands, urban areas",
+  #   "distribution": "Australia, New Guinea",
+  #   "description": "A highly intelligent bird known for its warbling song and striking black-and-white plumage.",
+  #   "score": 35
+  # },
+  # {
+  #   "species": "Kea",
+  #   "scientific_name": "Nestor notabilis",
+  #   "habitat": "Alpine regions, forests",
+  #   "distribution": "New Zealand",
+  #   "description": "A large, intelligent parrot known for its curiosity and playful behavior.",
+  #   "score": 80
+  # },
+  # {
+  #   "species": "Common Myna",
+  #   "scientific_name": "Acridotheres tristis",
+  #   "habitat": "Urban areas, farmlands, forests",
+  #   "distribution": "Asia, Australia, and Pacific islands",
+  #   "description": "An adaptive bird known for its loud calls and mimicry.",
+  #   "score": 40
+  # },
+  # {
+  #   "species": "Australian Shelduck",
+  #   "scientific_name": "Tadorna tadornoides",
+  #   "habitat": "Lakes, rivers, wetlands",
+  #   "distribution": "Australia",
+  #   "description": "A large, colorful duck known for its striking plumage and loud, honking call.",
+  #   "score": 50
+  # },
+  # {
+  #   "species": "Akiapolaau",
+  #   "scientific_name": "Hemignathus wilsoni",
+  #   "habitat": "Forests",
+  #   "distribution": "Hawaii",
+  #   "description": "A rare Hawaiian honeycreeper with a distinctive curved bill used to extract insects from tree bark.",
+  #   "score": 90
+  # },
+  # {
+  #   "species": "Red-flanked Lorikeet",
+  #   "scientific_name": "Charmosyna placentis",
+  #   "habitat": "Lowland forests",
+  #   "distribution": "New Guinea, islands in the Pacific",
+  #   "description": "A small, colorful parrot known for its vibrant plumage and acrobatic feeding behavior.",
+  #   "score": 65
+  # },
+  # {
+  #   "species": "Masked Owl",
+  #   "scientific_name": "Tyto novaehollandiae",
+  #   "habitat": "Woodlands, forests, farmlands",
+  #   "distribution": "Australia, New Guinea",
+  #   "description": "A medium-sized owl known for its heart-shaped face and predatory skills.",
+  #   "score": 70
+  # },
+  # {
+  #   "species": "Southern Brown Kiwi",
+  #   "scientific_name": "Apteryx australis",
+  #   "habitat": "Forests, scrublands",
+  #   "distribution": "New Zealand",
+  #   "description": "A flightless, nocturnal bird with a long beak, known as the national symbol of New Zealand.",
+  #   "score": 85
+  # },
+  # {
+  #   "species": "Satin Flycatcher",
+  #   "scientific_name": "Myiagra cyanoleuca",
+  #   "habitat": "Woodlands, forests",
+  #   "distribution": "Australia, New Guinea",
+  #   "description": "A small, insectivorous bird with striking blue-black plumage in males.",
+  #   "score": 55
+  # },
+  # {
+  #   "species": "Little Penguin",
+  #   "scientific_name": "Eudyptula minor",
+  #   "habitat": "Coastal waters and islands",
+  #   "distribution": "Australia, New Zealand",
+  #   "description": "The smallest species of penguin, known for its blue and white plumage and nocturnal habits.",
+  #   "score": 75
+  # },
+  # {
+  #   "species": "Pied Cormorant",
+  #   "scientific_name": "Phalacrocorax varius",
+  #   "habitat": "Coastal waters, lakes, rivers",
+  #   "distribution": "Australia, New Zealand",
+  #   "description": "A large waterbird known for its black-and-white plumage and diving ability.",
+  #   "score": 45
+  # },
+  # {
+  #   "species": "Noisy Miner",
+  #   "scientific_name": "Manorina melanocephala",
+  #   "habitat": "Woodlands, urban areas",
+  #   "distribution": "Eastern Australia",
+  #   "description": "A highly social bird known for its noisy calls and aggressive behavior towards other birds.",
+  #   "score": 30
+  # },
+  # {
+  #   "species": "Eastern Yellow Robin",
+  #   "scientific_name": "Eopsaltria australis",
+  #   "habitat": "Forests, woodlands, gardens",
+  #   "distribution": "Eastern Australia",
+  #   "description": "A small bird with bright yellow underparts and an inquisitive nature.",
+  #   "score": 55
+  # },
+  # {
+  #   "species": "Sacred Kingfisher",
+  #   "scientific_name": "Todiramphus sanctus",
+  #   "habitat": "Forests, mangroves, coastal areas",
+  #   "distribution": "Australia, New Zealand, Pacific islands",
+  #   "description": "A medium-sized kingfisher with striking blue and white plumage.",
+  #   "score": 50
+  # }
 ]
 
 puts "Populating database with unique bird data..."
@@ -406,7 +401,7 @@ puts "Populating database with unique bird data..."
   # end
 end
 
-puts "Bird database build complete!"
+puts "#{Bird.all.count} birds created!"
 
 # Spotting database seed
 puts "Creating bird spottings..."
@@ -515,8 +510,8 @@ puts "Creating bird spottings..."
   "2024-06-09", "2024-06-10", "2024-06-11", "2024-06-12", "2024-06-13",
   "2024-06-14", "2024-06-15"
 ]
-@bird_spots = [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 16, 18].shuffle
-@user_array = (1...15).to_a
+@bird_spots = (0...9).to_a.shuffle
+@user_array = (1...10).to_a
 
 @user_array.each do |user_num|
   spots = @bird_spots[(user_num - 1)]
