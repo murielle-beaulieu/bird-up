@@ -30,19 +30,19 @@ export default class extends Controller {
     }, 21000);
   }
 
-  preview(event) {
-    const input = event.target;
-    if (input.files && input.files[0]) {
-      const reader = new FileReader();
+  // preview(event) {
+  //   const input = event.target;
+  //   if (input.files && input.files[0]) {
+  //     const reader = new FileReader();
 
-      reader.onload = (e) => {
-        const imagePreview = document.getElementById('image_preview');
-        imagePreview.src = e.target.result;
-        imagePreview.style.display = 'block'; // Ensure the image is visible
-      };
+  //     reader.onload = (e) => {
+  //       const imagePreview = document.getElementById('image_preview');
+  //       imagePreview.src = e.target.result;
+  //       imagePreview.style.display = 'block'; // Ensure the image is visible
+  //     };
 
-      reader.readAsDataURL(input.files[0]);
-    }
-  }
+  //     reader.readAsDataURL(input.files[0]);
+  //   }
+  // }
 
 }

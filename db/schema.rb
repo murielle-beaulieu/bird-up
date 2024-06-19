@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_18_000130) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_19_044503) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -77,6 +77,25 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_18_000130) do
     t.string "img"
   end
 
+  create_table "search_result_birds", force: :cascade do |t|
+    t.bigint "search_result_id", null: false
+    t.bigint "bird_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bird_id"], name: "index_search_result_birds_on_bird_id"
+    t.index ["search_result_id"], name: "index_search_result_birds_on_search_result_id"
+  end
+
+  create_table "search_results", force: :cascade do |t|
+    t.bigint "photo_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["photo_id"], name: "index_search_results_on_photo_id"
+    t.index ["user_id"], name: "index_search_results_on_user_id"
+  end
+
   create_table "spottings", force: :cascade do |t|
     t.date "date"
     t.string "location"
@@ -107,6 +126,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_18_000130) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "search_result_birds", "birds"
+  add_foreign_key "search_result_birds", "search_results"
+  add_foreign_key "search_results", "photos"
+  add_foreign_key "search_results", "users"
   add_foreign_key "spottings", "birds"
   add_foreign_key "spottings", "users"
 end

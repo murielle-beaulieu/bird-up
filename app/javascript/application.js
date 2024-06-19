@@ -4,3 +4,5 @@ import "controllers"
 import "@popperjs/core"
 import "bootstrap"
 import "@rails/actioncable"
+
+console.log("Hello")

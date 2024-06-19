@@ -1,0 +1,108 @@
+<div id="<%= dom_id(search_result) %>">
+  <% case search_result.status  %>
+  <% when 'searching' %>
+    <%# PLACE LOADING ANIMATION HERE %>
+    <h2 style="margin-top: 30px;"> Looking for your bird </h2>
+    <% if search_result.photo.img.attached? %>
+      <%= cl_image_tag search_result.photo.img.key, height: 400, width: 400, crop: :fill %>
+    <% end %>
+    <%# <div data-controller="loading" data-action="turbo:load->loading#show">
+      <img src="https://res.cloudinary.com/dwbnezzsj/image/upload/v1718589880/birdflying_nfhqwc.gif" alt="flyingBird" class="loading-bird d-none" data-loading-target="bird">
+      <p class="loading-text d-none" data-loading-target="text">Loading...</p>
+    </div> %>
+  <% when 'success' %>
+    <%# ADD ANY EXTRA STYLING YOU WANT HERE FOR SUCCESSFUL SEARCH RESULT %>
+    <%# Success... %>
+    <div style="display: flex; justify-content: right; padding-right: 20px; padding-top: 20px;">
+      <%= link_to "Search Again?", new_photo_path, class: "btn poke-button" %>
+    </div>
+
+    <h2 style="margin-top: 30px;">We think you saw a <%= search_result.birds.first.species %>!</h2>
+
+    <%# DISPLAY FIRST BIRD %>
+    <% first_bird = search_result.birds.first %>
+    <div class="card-container">
+      <div class="card main-card">
+        <img src="<%= first_bird.img_url %>">
+        <div class="card-content">
+          <h4><strong><%= first_bird.species %></strong></h4>
+          <p style="color: #636363"><em><%= first_bird.scientific_name %></em></p>
+          <h5><%= first_bird.distribution %></h5>
+          <h6><%= first_bird.habitat %></h6>
+          <%= link_to "Learn More", show_bird_path(first_bird), class: "btn poke-button" %>
+        </div>
+      </div>
+    </div>
+
+    <%# DISPLAY OTHER 2 BIRDS %>
+    <% other_birds = search_result.birds.last(2) %>
+    <h3 style="margin-top: 10px;">See other possible options</h3>
+
+    <div class="card-container">
+      <% other_birds.each do |bird| %>
+        <div class="card">
+          <img src="<%= bird.img_url %>">
+          <div class="card-content">
+            <h4><strong><%= bird.species %></strong></h4>
+            <p style="color: #636363"><em><%= bird.scientific_name %></em></p>
+            <h5><%= bird.distribution %></h5>
+            <h6><%= bird.habitat %></h6>
+            <%= link_to "Learn More", show_bird_path(bird), class: "btn poke-button" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% when 'failed' %>
+    <%# STYLE THIS %>
+    <p>Something went wrong...</p>
+  <% end %>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<% if false %>
+  <div style="display: flex; justify-content: right; padding-right: 20px; padding-top: 20px;">
+    <%= link_to "Search Again?", new_photo_path, class: "btn poke-button" %>
+  </div>
+
+  <h2 style="margin-top: 30px;">We think you saw a <%= @bird.species %>!</h2>
+
+  <div class="card-container">
+    <div class="card main-card">
+      <img src="<%= @bird.img_url %>">
+      <div class="card-content">
+        <h4><strong><%= @bird.species %></strong></h4>
+        <p style="color: #636363"><em><%= @bird.scientific_name %></em></p>
+        <h5><%= @bird.distribution %></h5>
+        <h6><%= @bird.habitat %></h6>
+        <%= link_to "Learn More", show_bird_path(@bird), class: "btn poke-button" %>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top: 10px;">See other possible options</h3>
+
+  <div class="card-container">
+    <% @other_birds.each do |bird| %>
+      <div class="card">
+        <img src="<%= bird.img_url %>">
+        <div class="card-content">
+          <h4><strong><%= bird.species %></strong></h4>
+          <p style="color: #636363"><em><%= bird.scientific_name %></em></p>
+          <h5><%= bird.distribution %></h5>
+          <h6><%= bird.habitat %></h6>
+          <%= link_to "Learn More", show_bird_path(bird), class: "btn poke-button" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
