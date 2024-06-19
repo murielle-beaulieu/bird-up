@@ -6,12 +6,17 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%# javascript_include_tag "application", "data-turbolinks-track" => true, type: "module" %>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= favicon_link_tag 'https://res.cloudinary.com/dzianoxs7/image/upload/v1718331510/file_hxyjed.png' %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <%# New turbo tags %>
+    <%= turbo_refreshes_with method: :morph, scroll: :preserve  %>
+    <%= content_for :head %>
+    <%# End New turbo tags %>
 
   </head>
 

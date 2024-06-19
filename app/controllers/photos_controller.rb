@@ -1,6 +1,4 @@
 class PhotosController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:new, :create]
-
   def new
     @photo = Photo.new
   end
@@ -8,9 +6,12 @@ class PhotosController < ApplicationController
   def create
     @photo = Photo.new(photo_params)
     if @photo.save
-      url = @photo.img.url
+      SearchResult.create!(
+        user: current_user,
+        photo: @photo
+      ) # => creates search Result with status of :searching and triggers BackgroundJob Ai stuff
       redirect_to results_search_path
-      else
+    else
       render :new, status: :unprocessable_entity
     end
   end

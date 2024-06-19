@@ -5,5 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :birds, through: :spottings
   has_many :spottings
+  has_many :search_results, dependent: :destroy
   validates :username, presence: true
 end
