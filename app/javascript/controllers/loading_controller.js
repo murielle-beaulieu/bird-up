@@ -6,13 +6,10 @@ export default class extends Controller {
 
   connect() {
     console.log("Loading Connected!");
-    console.log(this);
-  }
 
-  show() {
-    console.log("Loading!");
-    this.birdTarget.classList.remove('d-none')
-    this.textTarget.classList.remove('d-none')
+    // this.birdTarget.classList.remove('d-none')
+    // this.textTarget.classList.remove('d-none')
+
     setTimeout(() => {
       this.uploadTarget.classList.remove('d-none')
     }, 3500);
@@ -28,6 +25,10 @@ export default class extends Controller {
     setTimeout(() => {
       this.textTarget.innerText = "Finding your exact match..."
     }, 21000);
+  }
+
+  show() {
+    // Method no longer used.
   }
 
   // preview(event) {

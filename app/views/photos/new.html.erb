@@ -6,12 +6,12 @@
           <%= f.input :img, as: :file, input_html: { data: { controller: "loading", action: "change->loading#preview" } } %>
           <%= f.button :submit, "Search", class:"poke-button", data: { action: "click->loading#show" } %>
         <% end %>
-        <img src="https://res.cloudinary.com/dwbnezzsj/image/upload/v1718589880/birdflying_nfhqwc.gif" alt="flyingBird" class="loading-bird d-none" data-loading-target="bird">
-        <p class="loading-text d-none" data-loading-target="text">Loading...</p>
+        <%# <img src="https://res.cloudinary.com/dwbnezzsj/image/upload/v1718589880/birdflying_nfhqwc.gif" alt="flyingBird" class="loading-bird d-none" data-loading-target="bird">
+        <p class="loading-text d-none" data-loading-target="text">Loading...</p> %>
     </div>
   </div>
-  <div style="width: 380px" class="container">
+  <%# <div style="width: 380px" class="container">
     <h4 class="d-none" data-loading-target="uploadTitle">Your uploaded image:</h3>
     <img id="image_preview" src="#" class="upload-image d-none" data-loading-target="upload">
-  </div>
+  </div> %>
 </div>
