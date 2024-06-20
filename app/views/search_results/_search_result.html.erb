@@ -2,16 +2,19 @@
   <% case search_result.status  %>
   <% when 'searching' %>
     <%# PLACE LOADING ANIMATION HERE %>
+
     <h2 style="margin-top: 30px;"> Looking for your bird </h2>
+    <%# <div data-controller="loading" class="d-flex">
+      <img src="https://res.cloudinary.com/dwbnezzsj/image/upload/v1718589880/birdflying_nfhqwc.gif" alt="flyingBird">
+      <p class="d-none" data-loading-target="text">Loading...</p>
+    </div> %>
+
     <% if search_result.photo.img.attached? %>
     <div style="display: flex; justify-content: center;">
       <%= cl_image_tag search_result.photo.img.key, class: "card" %>
     </div>
     <% end %>
-    <%# <div data-controller="loading" data-action="turbo:load->loading#show">
-      <img src="https://res.cloudinary.com/dwbnezzsj/image/upload/v1718589880/birdflying_nfhqwc.gif" alt="flyingBird" class="loading-bird d-none" data-loading-target="bird">
-      <p class="loading-text d-none" data-loading-target="text">Loading...</p>
-    </div> %>
+
   <% when 'success' %>
     <%# ADD ANY EXTRA STYLING YOU WANT HERE FOR SUCCESSFUL SEARCH RESULT %>
     <%# Success... %>
