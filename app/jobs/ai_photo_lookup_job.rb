@@ -70,7 +70,7 @@ class AiPhotoLookupJob < ApplicationJob
     elsif spec_response["numRecordings"] != "0"
       audio = "https://xeno-canto.org/#{spec_response['recordings'][0]['id']}/embed?simple=1"
     else
-      audio = "/app/assets/images/fletchlingPokemonAudio.png"
+      audio = nil
     end
     return audio
   end
