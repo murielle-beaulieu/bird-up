@@ -16,5 +16,6 @@ class RankingController < ApplicationController
     @rankings.sort_by! { |spots| -spots[:score] }
     @current_username = current_user.username
     @current_user_rank = @rankings.index { |rank| rank[:user] == @current_username } + 1
+    
   end
 end
