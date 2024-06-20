@@ -18,6 +18,7 @@ class SpottingsController < ApplicationController
   end
 
   def show
+    @bird = @spotting.bird
     @markers = [
       {
         lat: @spotting.latitude,
