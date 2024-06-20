@@ -2,45 +2,47 @@ class AiPhotoLookupJob < ApplicationJob
   queue_as :default
 
   def perform(search_result)
-    # Use OpenAI API for identification of bird
-    client = OpenAI::Client.new(
-      access_token: ENV['OPENAI_API_KEY'],
-      log_errors: true
-    )
+    measure_memory_usage do
+      # Use OpenAI API for identification of bird
+      client = OpenAI::Client.new(
+        access_token: ENV['OPENAI_API_KEY'],
+        log_errors: true
+      )
 
-    messages = [
-      { "type": "text", "text": "Return the bird in the image as JSON with its species, scientific_name, habitat, distribution, description, score (based on rarity out of 100). Create an array 'birds' of 3 related JSON objects." },
-      { "type": "image_url",
-        "image_url": {
-          "url": search_result.photo.img.url,
-        },
-      }
-    ]
+      messages = [
+        { "type": "text", "text": "Return the bird in the image as JSON with its species, scientific_name, habitat, distribution, description, score (based on rarity out of 100). Create an array 'birds' of 3 related JSON objects." },
+        { "type": "image_url",
+          "image_url": {
+            "url": search_result.photo.img.url,
+          },
+        }
+      ]
 
-    @response = client.chat(
-      parameters: {
-          model: "gpt-4o", # Required.
-          response_format: { type: "json_object" },
-          messages: [{ role: "user", content: messages}], # Required.
-          temperature: 0.7
-      }
-    )
+      @response = client.chat(
+        parameters: {
+            model: "gpt-4o", # Required.
+            response_format: { type: "json_object" },
+            messages: [{ role: "user", content: messages}], # Required.
+            temperature: 0.7
+        }
+      )
 
-    @ai_results = @response.dig("choices", 0, "message", "content")
-    @hash = JSON.load(@ai_results)
+      @ai_results = @response.dig("choices", 0, "message", "content")
+      @hash = JSON.load(@ai_results)
 
-    suggestions = @hash["birds"]
+      suggestions = @hash["birds"]
 
-    suggestions.each do |suggestion|
-      if Bird.find_by(scientific_name: suggestion["scientific_name"])
-        bird = Bird.find_by(scientific_name: suggestion["scientific_name"])
-      else
-        bird = create_bird(suggestion)
+      suggestions.each do |suggestion|
+        if Bird.find_by(scientific_name: suggestion["scientific_name"])
+          bird = Bird.find_by(scientific_name: suggestion["scientific_name"])
+        else
+          bird = create_bird(suggestion)
+        end
+        # Create link between bird suggestions and search result
+        SearchResultBird.create!(bird: bird, search_result: search_result)
       end
-      # Create link between bird suggestions and search result
-      SearchResultBird.create!(bird: bird, search_result: search_result)
+      search_result.update!(status: :success)
     end
-    search_result.update!(status: :success)
   rescue => e
     puts "=============== ERROR ==============="
     puts e
