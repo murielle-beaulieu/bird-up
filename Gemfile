@@ -94,4 +94,3 @@ gem "sidekiq-failures"
 
 # Faker Gem
 gem 'faker'
-
