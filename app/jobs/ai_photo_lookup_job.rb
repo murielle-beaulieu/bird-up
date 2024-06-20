@@ -2,7 +2,6 @@ class AiPhotoLookupJob < ApplicationJob
   queue_as :default
 
   def perform(search_result)
-    measure_memory_usage do
       # Use OpenAI API for identification of bird
       client = OpenAI::Client.new(
         access_token: ENV['OPENAI_API_KEY'],
@@ -40,7 +39,7 @@ class AiPhotoLookupJob < ApplicationJob
         end
         # Create link between bird suggestions and search result
         SearchResultBird.create!(bird: bird, search_result: search_result)
-      end
+
       search_result.update!(status: :success)
     end
   rescue => e
