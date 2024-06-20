@@ -25,7 +25,7 @@ def get_audio(sci_name, species)
   elsif spec_response["numRecordings"] != "0"
     audio = "https://xeno-canto.org/#{spec_response['recordings'][0]['id']}/embed?simple=1"
   else
-    audio = "Audio file not available"
+    audio = nil
   end
   return audio
 end
@@ -321,14 +321,14 @@ puts "Building Bird database..."
   #   "description": "A medium-sized owl known for its heart-shaped face and predatory skills.",
   #   "score": 70
   # },
-  # {
-  #   "species": "Southern Brown Kiwi",
-  #   "scientific_name": "Apteryx australis",
-  #   "habitat": "Forests, scrublands",
-  #   "distribution": "New Zealand",
-  #   "description": "A flightless, nocturnal bird with a long beak, known as the national symbol of New Zealand.",
-  #   "score": 85
-  # },
+  {
+    "species": "Southern Brown Kiwi",
+    "scientific_name": "Apteryx australis",
+    "habitat": "Forests, scrublands",
+    "distribution": "New Zealand",
+    "description": "A flightless, nocturnal bird with a long beak, known as the national symbol of New Zealand.",
+    "score": 85
+  },
   # {
   #   "species": "Satin Flycatcher",
   #   "scientific_name": "Myiagra cyanoleuca",
@@ -492,7 +492,6 @@ puts "Creating bird spottings..."
   "Lawn Hill (Boodjamulla) National Park",
   "Ravensbourne National Park",
   "Mount Barney National Park",
-  "Gondwana Rainforests of Australia (multi-location UNESCO site)",
   "Border Ranges National Park",
   "Nightcap National Park",
   "Wollumbin National Park",

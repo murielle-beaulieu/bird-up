@@ -3,13 +3,13 @@
 </div>
 
   <div style="margin: 28px auto;">
-    <h2 class="mt-3">Update your spotting of the <%= @bird.species %></h2>
+    <h2 class="mt-3">Update your spotting of the <%= @spotting.bird.species %></h2>
   </div>
   <div class="card show-bird" style="margin: 0 auto;">
-    <img src="<%= @bird.img_url %>">
+    <img src="<%= @spotting.bird.img_url %>">
     <div class="card-content">
-      <h3><%= @bird.species %></h3>
-      <h5><em><%= @bird.scientific_name %></em></h5>
+      <h3><%= @spotting.bird.species %></h3>
+      <h5><em><%= @spotting.bird.scientific_name %></em></h5>
       <h4>Location: <%= @spotting.location %></h4>
       <h4>Date: <%= @spotting.date %></h4>
     </div>

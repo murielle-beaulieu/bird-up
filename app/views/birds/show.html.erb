@@ -11,10 +11,10 @@
     <h3 style="color: #636363"><em><%= @bird.scientific_name %></em></h3>
     <div class="bird-song">
       <h4>Bird Song</h4>
-      <% if @bird.audio_url.include?("xeno-canto") %>
-        <iframe src="<%=@bird.audio_url%>" scrolling='no' frameborder='0' width='300' height='115'></iframe>
+      <% if @bird.audio_url == nil %>
+        <%= image_tag "fletchlingPokemonAudio.png", class: "no-audio-image", alt: "Audio recording is not available"%>
       <% else %>
-        <img src="/assets/images/fletchlingPokemonAudio.png" alt="Audio recording is not available">
+        <iframe src="<%=@bird.audio_url%>" scrolling='no' frameborder='0' width='300' height='115'></iframe>
       <% end %>
     </div>
     <div style= "width: 80%; text-align: center;">
