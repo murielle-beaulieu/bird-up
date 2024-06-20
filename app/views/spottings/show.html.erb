@@ -5,12 +5,12 @@
 <div style="display: flex; flex-direction: column; align-items: center;">
   <div class="card-container">
     <div class="card" style="margin-bottom: 30px; margin-right: 30px;">
-      <img src="<%= @spotting.bird.img_url %>">
+      <img src="<%= @bird.img_url %>">
     </div>
     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;">
-      <h2><strong><%= @spotting.bird.species %></strong></h2>
-      <h3 style="color: #636363"><em><%= @spotting.bird.scientific_name %></em></h3>
-      <h4 style="margin-bottom: 30px;">⭐ <%= @spotting.bird.score %></h4>
+      <h2><strong><%= @bird.species %></strong></h2>
+      <h3 style="color: #636363"><em><%= @bird.scientific_name %></em></h3>
+      <h4 style="margin-bottom: 30px;">⭐ <%= @bird.score %></h4>
     </div>
   </div>
     <div class="card-content spotting-content">
@@ -24,11 +24,11 @@
         </div>
       <div style= "width: 80%; text-align: center;">
         <h4>Description</h4>
-        <p><%= @spotting.bird.description %></p>
+        <p><%= @bird.description %></p>
         <h4>Distribution</h4>
-        <p><%= @spotting.bird.distribution %></p>
+        <p><%= @bird.distribution %></p>
         <h4>Habitat</h4>
-        <p><%= @spotting.bird.habitat %></p>
+        <p><%= @bird.habitat %></p>
         <h4>Spotted Date</h4>
         <p><%= @spotting.date %></p>
         <h4>Spotted Location</h4>
