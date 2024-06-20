@@ -1,18 +1,13 @@
-<div id="<%= dom_id(search_result) %>" style="display: flex; flex-direction: column; align-items: center;">
+<div id="<%= dom_id(search_result) %>">
   <% case search_result.status  %>
   <% when 'searching' %>
+    <%# PLACE LOADING ANIMATION HERE %>
     <h2 style="margin-top: 30px;"> Looking for your bird </h2>
     <% if search_result.photo.img.attached? %>
-      <div style="display: flex; justify-content: center;">
-        <%= cl_image_tag search_result.photo.img.key, class: "card" %>
-      </div>
-    <% end %>
-    <div data-controller="loading" class="loading-container">
-      <div>
-        <img src="https://res.cloudinary.com/dwbnezzsj/image/upload/v1718589880/birdflying_nfhqwc.gif" alt="flyingBird" style="height: 60px; width: 60px;" data-loading-target="bird">
-        <p data-loading-target="text">Loading...</p>
-      </div>
+    <div style="display: flex; justify-content: center;">
+      <%= cl_image_tag search_result.photo.img.key, class: "card" %>
     </div>
+    <% end %>
     <%# <div data-controller="loading" data-action="turbo:load->loading#show">
       <img src="https://res.cloudinary.com/dwbnezzsj/image/upload/v1718589880/birdflying_nfhqwc.gif" alt="flyingBird" class="loading-bird d-none" data-loading-target="bird">
       <p class="loading-text d-none" data-loading-target="text">Loading...</p>
