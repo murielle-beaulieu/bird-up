@@ -16,8 +16,12 @@
     <div class="card-content spotting-content">
       <div class="bird-song">
         <h4>Bird Song</h4>
-        <iframe src="<%=@spotting.bird.audio_url%>" scrolling='no' frameborder='0' width='300' height='115'></iframe>
-      </div>
+          <% if @bird.audio_url == nil %>
+            <%= image_tag "fletchlingPokemonAudio.png", class: "no-audio-image", alt: "Audio recording is not available"%>
+          <% else %>
+            <iframe src="<%=@bird.audio_url%>" scrolling='no' frameborder='0' width='300' height='115'></iframe>
+          <% end %>
+        </div>
       <div style= "width: 80%; text-align: center;">
         <h4>Description</h4>
         <p><%= @spotting.bird.description %></p>
