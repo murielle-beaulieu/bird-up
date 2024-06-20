@@ -37,7 +37,7 @@
     </div>
 
     <%# DISPLAY OTHER 2 BIRDS %>
-    <% other_birds = search_result.birds.last(2) %>
+    <% other_birds = [search_result.birds.second, search_result.birds.third].compact %>
     <h3 style="margin-top: 10px;">See other possible options</h3>
 
     <div class="card-container">
