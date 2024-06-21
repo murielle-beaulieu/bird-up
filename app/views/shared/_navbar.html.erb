@@ -16,7 +16,7 @@
           <div>
             <a href="#" class="avatar hide" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <% if current_user.image.attached? %>
-                <%= image_tag current_user.image, class: "avatar hide", alt: "dropdown menu" %>
+                <%= cl_image_tag current_user.image.key, class: "avatar hide", alt: "dropdown menu" %>
               <% else %>
                 <%= image_tag "https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg", class: "avatar hide", style: "margin-left: -10px;", alt: "dropdown menu" %>
               <% end %>
