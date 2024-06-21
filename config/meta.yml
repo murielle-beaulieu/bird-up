@@ -1,5 +1,5 @@
 meta_product_name: "BirdUp"
 meta_title: "BirdUp - Happiness is just a bird away."
 meta_description: "Identify images of birds and connect with other birders."
-meta_image: "file_hxyjed.png" # should exist in `app/assets/images/`
+meta_image: "hero.png" # should exist in `app/assets/images/`
 # twitter_account: "@product_twitter_account" # required for Twitter Cards
