@@ -3,11 +3,14 @@
   <% when 'searching' %>
     <%# PLACE LOADING ANIMATION HERE %>
 
-    <h2 style="margin-top: 30px;"> Looking for your bird </h2>
+    <h2 style="margin-top: 30px;"> Looking for your bird... </h2>
     <%# <div data-controller="loading" class="d-flex">
       <img src="https://res.cloudinary.com/dwbnezzsj/image/upload/v1718589880/birdflying_nfhqwc.gif" alt="flyingBird">
       <p class="d-none" data-loading-target="text">Loading...</p>
     </div> %>
+    <div style="display: flex; justify-content: center;">
+      <%= image_tag "birdflying.gif", style: "height: 70px; width: 70px;"%>
+    </div>
 
     <% if search_result.photo.img.attached? %>
     <div style="display: flex; justify-content: center;">
