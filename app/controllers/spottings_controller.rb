@@ -33,7 +33,7 @@ class SpottingsController < ApplicationController
     @spotting.user_id = current_user.id
 
     if @spotting.save
-      redirect_to success_spottings_path(@spotting)
+      redirect_to success_spottings_path(@spotting), notice: "⭐️ You earned #{@spotting.bird.score} points ⭐️"
     else
       render :show_bird, status: unprocessable_entity
     end
